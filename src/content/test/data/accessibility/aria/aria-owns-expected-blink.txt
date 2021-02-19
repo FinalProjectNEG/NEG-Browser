@@ -1,0 +1,34 @@
+rootWebArea
+++genericContainer ignored
+++++genericContainer ignored
+++++++list
+++++++++listItem
+++++++++++listMarker name='• '
+++++++++++++staticText name='• '
+++++++++++++++inlineTextBox name='• '
+++++++++++genericContainer
+++++++++++++staticText name='One'
+++++++++++++++inlineTextBox name='One'
+++++++++listItem
+++++++++++listMarker name='•'
+++++++++++++staticText name='•'
+++++++++++++++inlineTextBox name='•'
+++++++++++genericContainer
+++++++++++++staticText name='Two'
+++++++++++++++inlineTextBox name='Two'
+++++++++listItem
+++++++++++listMarker name='• '
+++++++++++++staticText name='• '
+++++++++++++++inlineTextBox name='• '
+++++++++++staticText name='Four'
+++++++++++++inlineTextBox name='Four'
+++++++genericContainer ignored
+++++++genericContainer ignored
+++++++++listItem
+++++++++++listMarker name='•'
+++++++++++++staticText name='•'
+++++++++++++++inlineTextBox name='•'
+++++++++++genericContainer
+++++++++++++staticText name='Three'
+++++++++++++++inlineTextBox name='Three'
+++++++genericContainer ignored
