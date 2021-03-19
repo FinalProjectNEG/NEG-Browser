@@ -1,0 +1,6 @@
+noparent = True
+include_rules = [
+  "+base/android/java",
+  "+components/strictmode/android/java",
+  "+weblayer/public/java",
+]
