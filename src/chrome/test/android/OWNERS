@@ -1,6 +1,0 @@
-file://chrome/android/OWNERS
-
-per-file BUILD.gn=*
-
-# COMPONENT: Test>Android
-# OS: Android

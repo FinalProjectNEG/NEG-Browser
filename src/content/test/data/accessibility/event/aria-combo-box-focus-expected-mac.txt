@@ -1,3 +1,0 @@
-AXFocusedUIElementChanged on AXStaticText AXValue="Apple not selected"
-AXSelectedTextChanged on AXStaticText AXValue="Apple not selected"
-AXSelectedTextChanged on AXWebArea

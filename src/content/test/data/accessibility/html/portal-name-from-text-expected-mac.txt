@@ -1,4 +1,0 @@
-AXWebArea
-++AXGroup
-++++AXButton AXDescription='Text in iframe'
-++++++AXWebArea AXTitle='Text in iframe'

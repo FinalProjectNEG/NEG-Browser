@@ -1,4 +1,0 @@
-include_rules = [
-  "+components/crx_file",
-  "+third_party/zlib/google",
-]

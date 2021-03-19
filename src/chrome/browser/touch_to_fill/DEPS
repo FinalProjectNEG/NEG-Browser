@@ -1,5 +1,0 @@
-include_rules = [
-  "+chrome/android",
-  "+chrome/browser/ui/android/favicon/java",
-  "+components/browser_ui/android/bottomsheet",
-]

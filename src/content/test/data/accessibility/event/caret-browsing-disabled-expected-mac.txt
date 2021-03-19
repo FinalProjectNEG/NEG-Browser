@@ -1,5 +1,0 @@
-AXSelectedTextChanged on AXWebArea
-AXSelectedTextChanged on AXWebArea
-=== Start Continuation ===
-AXSelectedTextChanged on AXWebArea
-AXSelectedTextChanged on AXWebArea

@@ -1,1 +1,0 @@
-AXExpandedChanged on AXLink AXDescription="Toggle"

@@ -1,2 +1,0 @@
-AXRowCollapsed on AXRow AXTitle="Minor"
-AXRowCountChanged on AXOutline

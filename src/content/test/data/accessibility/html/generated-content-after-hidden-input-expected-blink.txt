@@ -1,7 +1,0 @@
-rootWebArea
-++genericContainer ignored
-++++genericContainer ignored
-++++++paragraph
-++++++++textField ignored invisible
-++++++++staticText name='*'
-++++++++++inlineTextBox name='*'

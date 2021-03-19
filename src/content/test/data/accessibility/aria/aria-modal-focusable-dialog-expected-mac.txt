@@ -1,3 +1,0 @@
-AXWebArea
-++AXGroup AXDescription='modal dialog'
-++++AXStaticText AXValue='Focusable'

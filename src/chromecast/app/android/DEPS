@@ -1,5 +1,0 @@
-include_rules = [
-  "+chromecast/android",
-  "+chromecast/browser/android",
-  "+jni",
-]

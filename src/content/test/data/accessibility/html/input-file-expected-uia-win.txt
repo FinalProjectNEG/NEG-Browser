@@ -1,4 +1,0 @@
-Document
-++Group IsControlElement=false
-++++Button Name='No file chosen, Choose File'
-++++++Button Name='Choose File'

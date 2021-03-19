@@ -1,5 +1,0 @@
-[document web]
-++[form]
-++++[panel] name='Browser Engines:' labelled-by
-++++++[label] label-for
-++++++++[static] name='Browser Engines:'

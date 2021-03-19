@@ -1,3 +1,0 @@
-Document
-++Group Name='b'
-++Group Name='c'

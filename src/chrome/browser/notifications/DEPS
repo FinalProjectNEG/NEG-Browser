@@ -1,4 +1,0 @@
-include_rules = [
-  "+dbus",
-  "+ui/message_center",
-]

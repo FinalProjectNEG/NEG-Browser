@@ -1,5 +1,0 @@
-AXWebArea
-++AXGroup
-++++AXButton AXTitle='Kettle'
-++++++AXGroup
-++++++AXStaticText AXValue='Kettle'

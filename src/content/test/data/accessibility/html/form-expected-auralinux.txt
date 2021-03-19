@@ -1,3 +1,0 @@
-[document web]
-++[form]
-++++[push button] name='Submit' default

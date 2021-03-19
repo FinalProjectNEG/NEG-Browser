@@ -1,5 +1,0 @@
-[document web]
-++[section]
-++++[document frame] name='svg'
-++++++[section]
-++++++++[static] name='Test'
