@@ -1,5 +1,0 @@
-[document web]
-++[paragraph]
-++++[static] name='This text contains '
-++++[subscript] name='subscript'
-++++[static] name=' text.'

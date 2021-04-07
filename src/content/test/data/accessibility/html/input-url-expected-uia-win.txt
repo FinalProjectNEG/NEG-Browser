@@ -1,3 +1,0 @@
-Document LocalizedControlType='document'
-++Group LocalizedControlType='group' IsControlElement=false
-++++Edit LocalizedControlType='url' Value.Value='example.com'

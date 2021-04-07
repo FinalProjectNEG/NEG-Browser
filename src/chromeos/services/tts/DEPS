@@ -1,7 +1,0 @@
-include_rules = [
-  "+media/base",
-  "+mojo/public",
-  "+sandbox",
-  "+sandbox/policy",
-  "+services/audio/public/cpp",
-]

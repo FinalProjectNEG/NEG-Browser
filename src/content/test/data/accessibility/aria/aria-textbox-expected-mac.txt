@@ -1,3 +1,0 @@
-AXWebArea AXRoleDescription='HTML content'
-++AXTextField AXRoleDescription='text field' AXValue='TextBox1'
-++AXTextArea AXRoleDescription='text entry area' AXValue='TextBox2'

@@ -1,2 +1,0 @@
-EVENT_OBJECT_DESCRIPTIONCHANGE on <div#a> role=DIV
-

@@ -1,7 +1,0 @@
-Document
-++Document
-++++Document
-++++++Image
-++Document
-++++Document
-++++++Image

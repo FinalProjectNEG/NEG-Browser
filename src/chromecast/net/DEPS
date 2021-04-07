@@ -1,6 +1,0 @@
-include_rules = [
-  "+components/proxy_config",
-  "+net",
-  "+services/network/public/cpp",
-  "+services/network/public/mojom",
-]

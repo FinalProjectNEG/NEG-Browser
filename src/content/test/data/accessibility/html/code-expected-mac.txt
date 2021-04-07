@@ -1,3 +1,0 @@
-AXWebArea
-++AXGroup
-++++AXStaticText AXValue='A piece of computer code'

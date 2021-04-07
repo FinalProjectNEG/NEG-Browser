@@ -1,3 +1,0 @@
-AXWebArea
-++AXGroup
-++++AXStaticText AXValue='My car is blue.'

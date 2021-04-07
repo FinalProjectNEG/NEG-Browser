@@ -1,4 +1,0 @@
-const mojo = {
-  internal: { interfaceSupport: {} },
-  interfaceControl: {}
-};

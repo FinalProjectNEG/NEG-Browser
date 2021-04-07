@@ -1,3 +1,0 @@
-const mojoTmp = self['mojo'];
-delete self['mojo'];
-export const mojo = mojoTmp;

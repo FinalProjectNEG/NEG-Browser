@@ -1,6 +1,0 @@
-include_rules = [
-  "+crypto",
-  "+sandbox/linux/services",
-  "+sandbox/linux/suid",
-  "+sandbox/policy",
-]

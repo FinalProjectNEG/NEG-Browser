@@ -1,5 +1,0 @@
-include_rules = [
-  '+content/browser/webauth/authenticator_mojom_traits.h',
-  '+third_party/libaddressinput',
-  '+third_party/libphonenumber',
-]
