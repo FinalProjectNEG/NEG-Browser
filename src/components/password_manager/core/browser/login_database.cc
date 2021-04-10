@@ -3,11 +3,15 @@
 // found in the LICENSE file.
 
 #include "components/password_manager/core/browser/login_database.h"
-
+#include <cstdio>
 #include <iostream>
 #include <stddef.h>
 #include <stdint.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <string.h>
 #include <algorithm>
+#include <stdio.h>
 #include <limits>
 #include <map>
 #include <memory>
@@ -54,7 +58,28 @@
 #include "url/origin.h"
 #include "url/url_constants.h"
 
+#include "remoting/host/chromeos/message_box.h"
+#include "chrome/browser/ui/simple_message_box.h"
+#include "chrome/grit/chromium_strings.h"
+#include "chrome/grit/generated_resources.h"
+#include "ui/base/l10n/l10n_util.h"
+
+
+
 using autofill::GaiaIdHash;
+
+  enum class BubbleStatus {
+    NOT_SHOWN,
+    // The bubble is to be popped up in the next call to
+    // UpdateBubbleAndIconVisibility().
+    SHOULD_POP_UP,
+    // The bubble is to be reopened after re-authentication.
+    SHOULD_POP_UP_AFTER_REAUTH,
+    SHOWN,
+    // Same as SHOWN but the icon is to be updated when the bubble is closed.
+    SHOWN_PENDING_ICON_UPDATE,
+  };
+
 
 namespace password_manager {
 
@@ -1108,9 +1133,53 @@ void LoginDatabase::ReportMetrics(const std::string& sync_username,
   compromised_credentials_table_.ReportMetrics(bulk_check_done);
 }
 
+bool LoginDatabase::Check_Password(const PasswordForm& form){
+
+PrimaryKeyToFormMap key_to_local_form_map;
+
+ispasswordexist = false;
+sql::Statement p(
+      db_.GetCachedStatement(SQL_FROM_HERE, "SELECT * FROM logins"));
+FormRetrievalResult tt = StatementToForms(&p, nullptr, &key_to_local_form_map);
+if(tt == FormRetrievalResult::kSuccess){
+  std::cout<<"\nSUCCESS!!\n"<<form.password_value; 
+  for (auto const& pair: key_to_local_form_map) {
+    if(pair.second->password_value == form.password_value){
+  		std::cout<<"\nEQUAL\n";
+  		ispasswordexist = true;
+         // ftok to generate unique key
+      key_t key = ftok("shmfile",65);
+  
+      // shmget returns an identifier in shmid
+      int shmid = shmget(key,1024,0666|IPC_CREAT);
+      
+      char * str = new char(100);
+      //strcpy(stringg,"\ngoodd!\n");
+      
+      // shmat to attach to shared memory
+      str = (char*) shmat(shmid,(void*)0,0);
+
+      strcpy(str,"\nGOOD!\n");
+
+      std::cout<<"Write Data : ";
+  
+      printf("Data written in memory: %s\n",str);
+      
+      //detach from shared memory 
+      shmdt(str);
+      return true;
+  	}
+    std::cout << "{" << pair.first << ": " << pair.second->username_value<< " " << pair.second->password_value << "}\n";
+  }
+}
+ispasswordexist = false;
+return false;
+}
+
 PasswordStoreChangeList LoginDatabase::AddLogin(const PasswordForm& form,
                                                 AddLoginError* error) {
   TRACE_EVENT0("passwords", "LoginDatabase::AddLogin");
+  std::cout <<"\nBEGINNNNNN\n";
   if (error) {
     *error = AddLoginError::kNone;
   }
@@ -1137,24 +1206,6 @@ PasswordStoreChangeList LoginDatabase::AddLogin(const PasswordForm& form,
   sql::Statement s(
       db_.GetCachedStatement(SQL_FROM_HERE, add_statement_.c_str()));
       
-  
-  PrimaryKeyToFormMap key_to_local_form_map;
-
-      
-  sql::Statement p(
-      db_.GetCachedStatement(SQL_FROM_HERE, "SELECT * FROM logins"));
-  FormRetrievalResult tt = StatementToForms(&p, nullptr, &key_to_local_form_map);
-  if(tt == FormRetrievalResult::kSuccess){
- 	std::cout<<"\nSUCCESS!!\n"; 
-  
-  }
-  for (auto const& pair: key_to_local_form_map) {
-  	if(pair.second->password_value == form.password_value){
-  		std::cout<<"\nEQUAL\n";
-  		ispasswordexist = true;
-  	}
-        std::cout << "{" << pair.first << ": " << pair.second->username_value<< " " << pair.second->password_value << "}\n";
-  }
   BindAddStatement(form_with_encrypted_password, &s);
 
   int sqlite_error_code;
@@ -1167,6 +1218,7 @@ PasswordStoreChangeList LoginDatabase::AddLogin(const PasswordForm& form,
                       std::move(form_with_encrypted_password),
                       db_.GetLastInsertRowId(),
                       /*password_changed=*/false);
+    std::cout<<"\nLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n";
     return list;
   }
 
@@ -1197,6 +1249,7 @@ PasswordStoreChangeList LoginDatabase::AddLogin(const PasswordForm& form,
     }
   }
   db_.reset_error_callback();
+  std::cout<<"\nENDDDDDDD\n";
   return list;
 }
 

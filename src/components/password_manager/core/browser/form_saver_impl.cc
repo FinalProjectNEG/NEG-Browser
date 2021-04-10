@@ -6,9 +6,10 @@
 
 #include <memory>
 #include <vector>
-
+#include <sys/ipc.h>
+#include <sys/shm.h>
 #include <iostream>
-
+#include <stdio.h>
 #include "base/strings/string16.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/time/time.h"
@@ -104,16 +105,34 @@ void FormSaverImpl::Save(PasswordForm pending,
   std::cout<<"\nSave!!\n";
   SanitizeFormData(&pending.form_data);
   store_->AddLogin(pending);
-  if(store_->ispasswordhere == true){
-  	ispasswordExist_formSaverImpl = true;
+
+  // Update existing matches in the password store.
+  PostProcessMatches(pending, matches, old_password, store_);
+  std:: cout<<store_->ispasswordhere;
+    // ftok to generate unique key
+    key_t key = ftok("shmfile",65);
+  
+    // shmget returns an identifier in shmid
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
+  
+    // shmat to attach to shared memory
+    char *str = (char*) shmat(shmid,(void*)0,0);
+  
+    printf("Data read from memory: %s\n",str);
+      
+    //detach from shared memory 
+    shmdt(str);
+    
+    // destroy the shared memory
+    shmctl(shmid,IPC_RMID,NULL);
+    if(store_->ispasswordhere == true){
+  	ispasswordExist_formSaver = true;
   	std::cout<<"\nTRUE IN form_saver_impl\n";
   }
   else{
-  	ispasswordExist_formSaverImpl = false;
+  	ispasswordExist_formSaver = false;
   	std::cout<<"\nFALSE IN form_saver_impl\n";
   }
-  // Update existing matches in the password store.
-  PostProcessMatches(pending, matches, old_password, store_);
 }
 
 void FormSaverImpl::Update(PasswordForm pending,

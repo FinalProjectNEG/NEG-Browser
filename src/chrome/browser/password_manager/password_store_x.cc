@@ -107,7 +107,10 @@ PasswordStoreChangeList PasswordStoreX::AddLoginImpl(
     const PasswordForm& form,
     password_manager::AddLoginError* error) {
   CheckMigration();
-  return PasswordStoreDefault::AddLoginImpl(form, error);
+  
+  PasswordStoreChangeList pp = PasswordStoreDefault::AddLoginImpl(form, error);
+  std::cout<<"\nMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n";
+  return pp;
 }
 
 PasswordStoreChangeList PasswordStoreX::UpdateLoginImpl(

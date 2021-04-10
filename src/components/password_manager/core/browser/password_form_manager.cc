@@ -305,10 +305,17 @@ void PasswordFormManager::Save() {
     password_save_manager_->Unblacklist(ConstructObservedFormDigest());
     newly_blacklisted_ = false;
   }
-           std::cout << "\n\n\n\n\n"  << "HERE" << "\n\n\n\n\n";
-  password_save_manager_->Save(observed_form(), *parsed_submitted_form_);
 
+  password_save_manager_->Save(observed_form(), *parsed_submitted_form_);
+  if(password_save_manager_->ispasswordExist_passwordSaveManager == true){
+    ispasswordExist_ManagePasswordUiController = true;
+  }
+  else{
+    ispasswordExist_ManagePasswordUiController = false;
+  }
   client_->UpdateFormManagers();
+             std::cout << "\n"  << "HERE" << "\n";
+
 }
 
 void PasswordFormManager::Update(const PasswordForm& credentials_to_update) {

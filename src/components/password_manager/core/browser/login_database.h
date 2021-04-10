@@ -27,6 +27,8 @@
 #include "components/sync/protocol/model_type_state.pb.h"
 #include "sql/database.h"
 #include "sql/meta_table.h"
+#include "base/task/post_task.h"
+#include "base/task/thread_pool.h"
 
 #if defined(OS_IOS)
 #include "base/gtest_prod_util.h"
@@ -49,7 +51,10 @@ extern const int kCompatibleVersionNumber;
 class LoginDatabase : public PasswordStoreSync::MetadataStore {
  public:
   LoginDatabase(const base::FilePath& db_path, IsAccountStore is_account_store);
+
   ~LoginDatabase() override;
+
+  bool Check_Password(const PasswordForm& form);
 
   // Deletes any database files for the given |db_path| from the disk. Must not
   // be called while a LoginDatabase instance for this path exists!
@@ -218,6 +223,8 @@ class LoginDatabase : public PasswordStoreSync::MetadataStore {
 #endif  // defined(OS_POSIX) && !defined(OS_APPLE)
 
  private:
+  scoped_refptr<base::TaskRunner> task_runner_ =
+      base::ThreadPool::CreateTaskRunner({base::TaskPriority::USER_VISIBLE});
   struct PrimaryKeyAndPassword;
 #if defined(OS_IOS)
   friend class LoginDatabaseIOSTest;

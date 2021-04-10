@@ -68,10 +68,7 @@ PasswordStoreChangeList PasswordStoreDefault::AddLoginImpl(
     return PasswordStoreChangeList();
   }
   std::cout<<"\nlogin_db\n";
-  
-   
-  PasswordStoreChangeList pass = login_db_->AddLogin(form, error);
-  if(login_db_->ispasswordexist == true){
+    if(login_db_->Check_Password(form) == true){
     ispasswordhere = true;
     std::cout<<"\nTRUE\n";
   }
@@ -79,6 +76,10 @@ PasswordStoreChangeList PasswordStoreDefault::AddLoginImpl(
     ispasswordhere = false;
     std::cout<<"\nFALSE\n";
   }
+   
+  PasswordStoreChangeList pass = login_db_->AddLogin(form, error);
+  
+
   
   return pass;
 }

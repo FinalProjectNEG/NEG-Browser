@@ -260,31 +260,11 @@ void PasswordSaveManagerImpl::Save(const FormData* observed_form,
 
   if (IsNewLogin()) {
   
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-  
-//  std::unique_ptr<password_manager::LoginDatabase> login_db(password_manager::CreateLoginDatabaseForProfileStorage(ProfileManager::GetLastUsedProfile()->GetPath()));
-  
-  //  scoped_refptr<PasswordStoreX> ps;
-  //  ps = new PasswordStoreX(std::move(login_db), ProfileManager::GetLastUsedProfile()->GetPrefs());
-
-
-
-
-//    base::FilePath login_db_file_path = GetProfile()->GetPath().Append(password_manager::kLoginDataForProfileFileName);
-//  password_manager::LoginDatabase db(login_db_file_path,password_manager::IsAccountStore(true));
-//  std::cout<<"Profile: "<<GetProfile()->GetPath();
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     SanitizePossibleUsernames(&pending_credentials_);
     pending_credentials_.date_created = base::Time::Now();
   }
 
   SavePendingToStore(observed_form, parsed_submitted_form);
-
   if (pending_credentials_.times_used == 1 &&
       pending_credentials_.type == PasswordForm::Type::kGenerated) {
     // This also includes PSL matched credentials.
@@ -525,6 +505,7 @@ void PasswordSaveManagerImpl::SavePendingToStore(
         GetOldPassword(parsed_submitted_form), GetFormSaverForGeneration());
   } else {
     SavePendingToStoreImpl(parsed_submitted_form);
+    
   }
 }
 
@@ -535,7 +516,17 @@ void PasswordSaveManagerImpl::SavePendingToStoreImpl(
   if (IsNewLogin()) {
     std::cout<<"\n\nHEREEEEEEE\n\n";
     form_saver_->Save(pending_credentials_, matches, old_password);
-  } else {
+    if(form_saver_->ispasswordExist_formSaver==true){
+
+        ispasswordExist_passwordSaveManager = true;
+    }
+    else{
+
+        ispasswordExist_passwordSaveManager = false;
+
+    }
+  }
+  else {
     // It sounds wrong that we still update even if the state is NONE. We
     // should double check if this actually necessary. Currently some tests
     // depend on this behavior.

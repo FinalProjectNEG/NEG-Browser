@@ -512,9 +512,16 @@ void ManagePasswordsUIController::SavePassword(const base::string16& username,
             kTriggeredManualFallbackForSaving);
   }
   save_fallback_timer_.Stop();
-  std::cout << "\nLOOK OVER HERE3\n";
 
-  passwords_data_.form_manager()->Save();
+  password_manager::PasswordFormManagerForUI* pass = passwords_data_.form_manager();
+  pass->Save();
+  if(pass->ispasswordExist_ManagePasswordUiController == true){
+    std::cout<<"\n EDENNN = TRUE\n";
+  }
+  else{
+    std::cout<<"\n EDENNN = FALSE\n";
+  }
+  std::cout << "\nLOOK OVER HERE3\n";
 
   if (base::FeatureList::IsEnabled(
           password_manager::features::kEnablePasswordsAccountStorage)) {

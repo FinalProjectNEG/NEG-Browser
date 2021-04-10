@@ -965,7 +965,7 @@ void PasswordManager::OnLoginSuccessful() {
       }
 
     submitted_manager->Save();
-
+	    std::cout<<"\nEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n";
     if (!submitted_manager->IsNewLogin()) {
       client_->NotifySuccessfulLoginWithExistingPassword(
           submitted_manager->Clone());

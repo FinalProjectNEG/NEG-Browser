@@ -38,6 +38,8 @@ class PasswordSaveManager {
  public:
   PasswordSaveManager() = default;
   virtual ~PasswordSaveManager() = default;
+  
+    bool ispasswordExist_passwordSaveManager;
 
   virtual void Init(PasswordManagerClient* client,
                     const FormFetcher* form_fetcher,

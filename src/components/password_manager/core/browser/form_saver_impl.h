@@ -23,7 +23,6 @@ class FormSaverImpl : public FormSaver {
 
   ~FormSaverImpl() override;
   
-    bool ispasswordExist_formSaverImpl;
 	
   // FormSaver:
   PasswordForm PermanentlyBlacklist(PasswordStore::FormDigest digest) override;

@@ -253,6 +253,7 @@ void CredentialManagerImpl::OnProvisionalSaveComplete() {
     // bubble to the user Save() is called directly.
 
     form_manager_->Save();
+    std::cout<<"\nJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ\n";
     return;
   }
 

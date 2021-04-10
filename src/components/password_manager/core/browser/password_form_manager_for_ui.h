@@ -23,6 +23,10 @@ class PasswordFormMetricsRecorder;
 // UI.
 class PasswordFormManagerForUI {
  public:
+ 
+  bool ispasswordExist_ManagePasswordUiController;
+
+ 
   virtual ~PasswordFormManagerForUI() = default;
 
   // Returns URL of the initially observed form.

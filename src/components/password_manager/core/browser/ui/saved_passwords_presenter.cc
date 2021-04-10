@@ -69,12 +69,7 @@ bool SavedPasswordsPresenter::EditPassword(const PasswordForm& form,
 
 SavedPasswordsPresenter::SavedPasswordsView
 SavedPasswordsPresenter::GetSavedPasswords() const {
-std::cout << "::::::::::::::::::::: ";
 
-    for (auto it = passwords_.cbegin(); it != passwords_.cend(); it++)
-    {
-        std::cout << "\n\nusername: " << it->username_value << "end-username... password: " << it->password_value << "end-password\n\n\n";
-    }
   return passwords_;
 }
 

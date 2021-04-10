@@ -57,6 +57,7 @@ class ManagePasswordsUIController
  public:
   ~ManagePasswordsUIController() override;
 
+
 #if defined(UNIT_TEST)
   static void set_save_fallback_timeout_in_seconds(int timeout) {
     save_fallback_timeout_in_seconds_ = timeout;

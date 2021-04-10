@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 #include "components/password_manager/core/browser/password_store.h"
-
 #include <algorithm>
 #include <iterator>
 #include <memory>
@@ -182,8 +181,14 @@ void PasswordStore::SetAffiliatedMatchHelper(
 }
 
 void PasswordStore::AddLogin(const PasswordForm& form) {
+  std::cout<<"\nAAAAAAAAAAAAAAAAAAAAAAAAAA\n";
+  mtx.lock();
   DCHECK(main_task_runner_->RunsTasksInCurrentSequence());
+  std::cout<<"\nBBBBBBBBBBBBBBBBBBBBBBBBBB\n";
   ScheduleTask(base::BindOnce(&PasswordStore::AddLoginInternal, this, form));
+  mtx.lock();
+  mtx.unlock();
+
 }
 
 void PasswordStore::UpdateLogin(const PasswordForm& form) {
@@ -954,8 +959,12 @@ void PasswordStore::PostCompromisedCredentialsTaskAndReplyToConsumerWithResult(
 void PasswordStore::AddLoginInternal(const PasswordForm& form) {
   DCHECK(background_task_runner_->RunsTasksInCurrentSequence());
   TRACE_EVENT0("passwords", "PasswordStore::AddLoginInternal");
+    std::cout<<"\nPPPPPPPPPPPPPPPPPPPPPPPPPP\n";
+
   BeginTransaction();
   PasswordStoreChangeList changes = AddLoginImpl(form);
+    mtx.unlock();
+  std::cout<<"\nKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\n";
   NotifyLoginsChanged(changes);
   // Sync metadata get updated in NotifyLoginsChanged(). Therefore,
   // CommitTransaction() must be called after NotifyLoginsChanged(), because

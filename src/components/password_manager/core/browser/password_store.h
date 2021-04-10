@@ -9,7 +9,7 @@
 #include <ostream>
 #include <string>
 #include <vector>
-
+#include <mutex>          // std::mutex
 #include "base/bind_helpers.h"
 #include "base/callback.h"
 #include "base/callback_list.h"
@@ -160,6 +160,7 @@ class PasswordStore : protected PasswordStoreSync,
 
   PasswordStore();
   
+
   bool ispasswordhere;
 
 
@@ -501,7 +502,9 @@ class PasswordStore : protected PasswordStoreSync,
   };
 
   ~PasswordStore() override;
-
+  
+  std::mutex mtx;           // mutex for critical section
+  
   // Create a TaskRunner to be saved in |background_task_runner_|.
   virtual scoped_refptr<base::SequencedTaskRunner> CreateBackgroundTaskRunner()
       const;
