@@ -1155,6 +1155,7 @@ void ManagePasswordsForPage(Browser* browser) {
       ManagePasswordsUIController::FromWebContents(web_contents);
   TabDialogs::FromWebContents(web_contents)
       ->ShowManagePasswordsBubble(!controller->IsAutomaticallyOpeningBubble());
+
 }
 
 void SendTabToSelfFromPageAction(Browser* browser) {

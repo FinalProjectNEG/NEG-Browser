@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/permissions/android/permission_prompt_android.h"
-
+#include <iostream>
 #include <memory>
 
 #include "components/infobars/core/infobar.h"
@@ -78,6 +78,7 @@ void PermissionPromptAndroid::Closing() {
 
 void PermissionPromptAndroid::Accept() {
   delegate_->Accept();
+  std::cout<<"\npermission_prompt_android\n";
 }
 
 void PermissionPromptAndroid::Deny() {

@@ -34,6 +34,9 @@ struct AccountInfo;
 // and notify about user actions.
 class PasswordsModelDelegate {
  public:
+ 
+ bool ispasswordExist_delegate;
+ 
   // Returns WebContents* the model is attached to.
   virtual content::WebContents* GetWebContents() const = 0;
 

@@ -5,6 +5,7 @@
 #include "chrome/browser/ui/views/permission_bubble/permission_prompt_bubble_view.h"
 
 #include <memory>
+#include <iostream>
 
 #include "base/metrics/histogram_functions.h"
 #include "base/strings/string_util.h"
@@ -308,6 +309,7 @@ base::Optional<base::string16> PermissionPromptBubbleView::GetExtraText()
 void PermissionPromptBubbleView::AcceptPermission() {
   RecordDecision();
   delegate_->Accept();
+  std::cout<<"\npermission_prompt_bubble_view\n";
 }
 
 void PermissionPromptBubbleView::DenyPermission() {

@@ -5,6 +5,7 @@
 #include "components/infobars/android/confirm_infobar.h"
 
 #include <memory>
+#include <iostream>
 #include <utility>
 
 #include "base/android/jni_string.h"
@@ -76,8 +77,10 @@ void ConfirmInfoBar::ProcessButton(int action) {
          (action == InfoBarAndroid::ACTION_CANCEL));
   ConfirmInfoBarDelegate* delegate = GetDelegate();
   if ((action == InfoBarAndroid::ACTION_OK) ? delegate->Accept()
-                                            : delegate->Cancel())
+                                            : delegate->Cancel()){
+    std::cout<<"\nconfirm_infobar\n";
     RemoveSelf();
+                                            }
 }
 
 }  // namespace infobars

@@ -73,6 +73,7 @@ base::string16 InstantAppsInfoBarDelegate::GetMessageText() const {
 }
 
 bool InstantAppsInfoBarDelegate::Accept() {
+  std::cout<<"third";
   JNIEnv* env = base::android::AttachCurrentThread();
   if (instant_app_is_default_) {
     base::RecordAction(

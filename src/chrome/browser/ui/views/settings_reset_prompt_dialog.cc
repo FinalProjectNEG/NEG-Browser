@@ -22,7 +22,7 @@
 #include "ui/views/layout/fill_layout.h"
 #include "ui/views/view.h"
 #include "ui/views/widget/widget.h"
-
+#include <iostream>
 namespace chrome {
 
 void ShowSettingsResetPrompt(
@@ -51,6 +51,7 @@ SettingsResetPromptDialog::SettingsResetPromptDialog(
   SetAcceptCallback(base::BindOnce(
       [](SettingsResetPromptDialog* dialog) {
         std::exchange(dialog->controller_, nullptr)->Accept();
+        std::cout<<"\nsetting_reset_prompt_dialog\n";
       },
       base::Unretained(this)));
   SetCancelCallback(base::BindOnce(

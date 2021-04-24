@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <utility>
+#include <iostream>
 
 #include "base/logging.h"
 #include "base/numerics/checked_math.h"
@@ -445,6 +446,7 @@ void DisassemblerElfIntel<Traits>::ParseExecSection(
           (rel32->can_point_outside_section ||
            (start_rva <= target_rva && target_rva < end_rva))) {
         finder.Accept();
+        std::cout<<"\ndisassembler_elf\n";
         rel32_locations_.push_back(rel32_offset);
       }
     }

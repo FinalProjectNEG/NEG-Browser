@@ -516,10 +516,10 @@ void ManagePasswordsUIController::SavePassword(const base::string16& username,
   password_manager::PasswordFormManagerForUI* pass = passwords_data_.form_manager();
   pass->Save();
   if(pass->ispasswordExist_ManagePasswordUiController == true){
-    std::cout<<"\n EDENNN = TRUE\n";
+    ispasswordExist_delegate = true;
   }
   else{
-    std::cout<<"\n EDENNN = FALSE\n";
+    ispasswordExist_delegate = false;
   }
   std::cout << "\nLOOK OVER HERE3\n";
 
@@ -572,6 +572,7 @@ void ManagePasswordsUIController::SaveUnsyncedCredentialsInProfileStore(
     // means Save() can be safely called here, no password loss happens.
     profile_store_form_saver->Save(form, /*matches=*/{},
                                    /*old_password=*/base::string16());
+
   }
   ClearPopUpFlagForBubble();
   passwords_data_.OnInactive();
@@ -867,8 +868,8 @@ void ManagePasswordsUIController::
 
     if (passwords_data_.origin() == origin &&
         passwords_data_.form_manager() == form_manager) {
-            std::cout << "\nORIGIN: \n" << origin;
       SavePassword(username, password);
+      std::cout << "\nORIGIN: \n" << origin;
     }
     return;
   }

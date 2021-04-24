@@ -19,6 +19,7 @@
 #include "chromecast/media/audio/mixer_service/constants.h"
 #include "chromecast/media/audio/mixer_service/mixer_socket.h"
 #include "net/socket/stream_socket.h"
+#include <iostream>
 
 namespace chromecast {
 namespace media {
@@ -134,6 +135,7 @@ Receiver::Receiver()
           this),
       weak_factory_(this) {
   socket_service_.Accept();
+  std::cout<<"\nreciever\n";
   GetLocalReceiver()->SetInstance(this);
 }
 

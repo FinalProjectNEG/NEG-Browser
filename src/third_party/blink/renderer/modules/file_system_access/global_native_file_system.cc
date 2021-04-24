@@ -5,6 +5,8 @@
 #include "third_party/blink/renderer/modules/file_system_access/global_native_file_system.h"
 
 #include <utility>
+#include <iostream>
+
 
 #include "mojo/public/cpp/bindings/pending_remote.h"
 #include "mojo/public/cpp/bindings/remote.h"
@@ -60,6 +62,7 @@ Vector<mojom::blink::ChooseFileSystemEntryAcceptsOptionPtr> ConvertAccepts(
     mimeTypes.ReserveInitialCapacity(t->accept().size());
     Vector<String> extensions;
     for (const auto& a : t->accept()) {
+      std::cout<<"flobal native file system";
       String type = a.first.StripWhiteSpace(IsHTTPWhitespace);
       if (type.IsEmpty()) {
         exception_state.ThrowTypeError("Invalid type: " + a.first);

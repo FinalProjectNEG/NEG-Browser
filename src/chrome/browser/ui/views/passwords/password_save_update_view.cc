@@ -298,7 +298,7 @@ PasswordSaveUpdateView::PasswordSaveUpdateView(
 
     std::unique_ptr<views::ToggleImageButton> password_view_button =
         CreatePasswordViewButton(this, are_passwords_revealed_);
-
+    std::cout<<"\nMONGOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n";
     views::GridLayout* layout =
         SetLayoutManager(std::make_unique<views::GridLayout>());
 
@@ -337,11 +337,18 @@ const PasswordBubbleControllerBase* PasswordSaveUpdateView::GetController()
 bool PasswordSaveUpdateView::Accept() {
   UpdateUsernameAndPasswordInModel();
   controller_.OnSaveClicked();
-  if (controller_.ReplaceToShowPromotionIfNeeded()) {
+  if(controller_.ispasswordExist_bubbleController == false){
+    if (controller_.ReplaceToShowPromotionIfNeeded()) {
     ReplaceWithPromo();
     return false;  // Keep open.
+   }
+    return true;
   }
-  return true;
+  else{
+    UpdateBubbleUIElementsAfterChanges();
+    return false;
+  }
+
 }
 
 
@@ -483,6 +490,26 @@ void PasswordSaveUpdateView::UpdateBubbleUIElements() {
 
   SetTitle(controller_.GetTitle());
 }
+/////////////////////////////////////////////////////////////////////////////
+void PasswordSaveUpdateView::UpdateBubbleUIElementsAfterChanges() {
+  if (sign_in_promo_) {
+    SetButtons(ui::DIALOG_BUTTON_NONE);
+    return;
+  }
+  SetButtons(0);
+
+
+  SetTitle(base::ASCIIToUTF16("For your information:\nThis password is already saved in another site.\nFor security reasons we reccomend to change to another strong password(in 'Settings')."));
+    SizeToContents();
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 std::unique_ptr<views::View> PasswordSaveUpdateView::CreateFooterView() {
   if (!controller_.ShouldShowFooter())

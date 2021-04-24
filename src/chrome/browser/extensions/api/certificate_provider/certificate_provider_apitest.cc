@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <iostream>
 
 #include <memory>
 #include <string>
@@ -397,6 +398,7 @@ class CertificateProviderRequestPinTest : public CertificateProviderApiTest {
     GetActivePinDialogView()->textfield_for_testing()->SetText(
         base::ASCIIToUTF16(code));
     GetActivePinDialogView()->Accept();
+    std::cout<<"\ncertificate_provider_apitest\n";
     base::RunLoop().RunUntilIdle();
   }
 

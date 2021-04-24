@@ -59,6 +59,7 @@ class PasswordSaveUpdateView : public PasswordBubbleViewBase,
   void UpdateUsernameAndPasswordInModel();
   void ReplaceWithPromo();
   void UpdateBubbleUIElements();
+  void UpdateBubbleUIElementsAfterChanges();
   std::unique_ptr<views::View> CreateFooterView();
   void OnDialogCancelled();
 

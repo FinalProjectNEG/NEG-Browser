@@ -2030,6 +2030,7 @@ AutotestPrivateRunCrostiniUninstallerFunction::Run() {
           this));
   CrostiniUninstallerView::Show(profile);
   CrostiniUninstallerView::GetActiveViewForTesting()->Accept();
+  std::cout<<"\nautotest_private_api\n";
   return RespondLater();
 }
 

@@ -24,6 +24,8 @@ class SaveUpdateBubbleController : public PasswordBubbleControllerBase {
       base::WeakPtr<PasswordsModelDelegate> delegate,
       DisplayReason display_reason);
   ~SaveUpdateBubbleController() override;
+  
+  bool ispasswordExist_bubbleController;
 
   // Called by the view code when the save/update button is clicked by the user.
   void OnSaveClicked();

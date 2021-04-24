@@ -22,6 +22,7 @@
 #include "content/public/test/browser_test.h"
 #include "content/public/test/browser_test_utils.h"
 #include "ui/views/controls/label.h"
+#include <iostream>
 #include "ui/views/controls/textfield/textfield.h"
 
 namespace policy {
@@ -125,6 +126,7 @@ IN_PROC_BROWSER_TEST_F(SystemProxyManagerBrowserTest, AuthenticationDialog) {
 
   // Simulate clicking on "OK" button.
   dialog()->Accept();
+  std::cout<<"\nsystem_proxy_manager_browertest\n";
 
   // Wait for the callback set via |SetSendAuthDetailsClosureForTest| to be
   // called. The callback will be called when SystemProxyManager calls the D-Bus

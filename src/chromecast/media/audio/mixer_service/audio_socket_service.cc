@@ -5,6 +5,7 @@
 #include "chromecast/media/audio/mixer_service/audio_socket_service.h"
 
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/location.h"
@@ -13,6 +14,7 @@
 #include "net/base/net_errors.h"
 #include "net/socket/server_socket.h"
 #include "net/socket/stream_socket.h"
+#include <iostream>
 
 namespace chromecast {
 namespace media {
@@ -20,6 +22,7 @@ namespace media {
 AudioSocketService::~AudioSocketService() = default;
 
 void AudioSocketService::Accept() {
+  std::cout<<"audio socket sercive";
   DCHECK(task_runner_->RunsTasksInCurrentSequence());
   if (!listen_socket_) {
     return;
@@ -43,6 +46,7 @@ void AudioSocketService::OnAccept(int result) {
   DCHECK(task_runner_->RunsTasksInCurrentSequence());
   if (HandleAcceptResult(result)) {
     Accept();
+    std::cout<<"\naudio_socket_service\n";
   }
 }
 

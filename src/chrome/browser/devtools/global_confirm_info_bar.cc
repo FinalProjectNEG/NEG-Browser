@@ -5,7 +5,7 @@
 #include "chrome/browser/devtools/global_confirm_info_bar.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/macros.h"
 #include "base/stl_util.h"
@@ -130,6 +130,7 @@ bool GlobalConfirmInfoBar::DelegateProxy::Accept() {
     // in double-frees.
     info_bar->OnInfoBarRemoved(info_bar_, false);
     info_bar->delegate_->Accept();
+    std::cout<<"\nglobal_confirm_info_bar\n";
     if (info_bar)
       info_bar->Close();
     return true;

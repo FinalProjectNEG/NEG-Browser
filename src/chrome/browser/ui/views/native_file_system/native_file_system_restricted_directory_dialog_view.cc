@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/browser/ui/views/native_file_system/native_file_system_restricted_directory_dialog_view.h"
-
+#include <iostream>
 #include "base/memory/ptr_util.h"
 #include "chrome/browser/ui/views/chrome_layout_provider.h"
 #include "chrome/browser/ui/views/chrome_typography.h"
@@ -15,14 +15,17 @@
 #include "ui/strings/grit/ui_strings.h"
 #include "ui/views/controls/label.h"
 #include "ui/views/layout/fill_layout.h"
+#include <iostream>
 
 using HandleType = content::NativeFileSystemPermissionContext::HandleType;
 
 NativeFileSystemRestrictedDirectoryDialogView::
     ~NativeFileSystemRestrictedDirectoryDialogView() {
   // Make sure the dialog ends up calling the callback no matter what.
-  if (!callback_.is_null())
+  if (!callback_.is_null()){
     Accept();
+    std::cout<<"\nnative_file_system_restricted_directory_dialog_view\n";
+  }
 }
 
 // static

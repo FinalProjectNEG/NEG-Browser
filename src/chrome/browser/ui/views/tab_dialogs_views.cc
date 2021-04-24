@@ -6,7 +6,7 @@
 
 #include <memory>
 #include <utility>
-
+#include <iostream>
 #include "build/build_config.h"
 #include "chrome/browser/ui/views/collected_cookies_views.h"
 #include "chrome/browser/ui/views/hung_renderer_view.h"
@@ -79,6 +79,7 @@ void TabDialogsViews::ShowManagePasswordsBubble(bool user_action) {
   PasswordBubbleViewBase::ShowBubble(
       web_contents_, user_action ? LocationBarBubbleDelegateView::USER_GESTURE
                                  : LocationBarBubbleDelegateView::AUTOMATIC);
+                                 
 }
 
 void TabDialogsViews::HideManagePasswordsBubble() {

@@ -30,6 +30,7 @@
 #include "ui/views/layout/fill_layout.h"
 #include "ui/views/window/dialog_delegate.h"
 #include "url/gurl.h"
+#include <iostream>
 
 using safe_browsing::ClientSafeBrowsingReportRequest;
 
@@ -139,6 +140,7 @@ void DownloadDangerPromptViews::InvokeActionForTesting(Action action) {
 
     case CANCEL:
       Accept();
+      std::cout<<"\ndownload_danger_prompt_views\n";
       break;
 
     default:

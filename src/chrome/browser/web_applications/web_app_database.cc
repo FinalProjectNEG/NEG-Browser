@@ -7,6 +7,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <iostream>
+
 
 #include "base/bind.h"
 #include "base/callback.h"
@@ -224,6 +226,7 @@ std::unique_ptr<WebAppProto> WebAppDatabase::CreateWebAppProto(
     for (const auto& accept_entry : file_handler.accept) {
       WebAppFileHandlerAcceptProto* accept_entry_proto =
           file_handler_proto->add_accept();
+          std::cout<<"web app database";
       accept_entry_proto->set_mimetype(accept_entry.mime_type);
 
       for (const auto& file_extension : accept_entry.file_extensions)
@@ -481,6 +484,7 @@ std::unique_ptr<WebApp> WebAppDatabase::CreateWebApp(
     }
 
     for (const auto& accept_entry_proto : file_handler_proto.accept()) {
+      std::cout<<"web app database2";
       apps::FileHandler::AcceptEntry accept_entry;
       accept_entry.mime_type = accept_entry_proto.mimetype();
       for (const auto& file_extension : accept_entry_proto.file_extensions()) {
@@ -528,6 +532,7 @@ std::unique_ptr<WebApp> WebAppDatabase::CreateWebApp(
       apps::ShareTarget::Files files_entry;
       files_entry.name = share_target_params_file.name();
       for (const auto& file_type : share_target_params_file.accept()) {
+        std::cout<<"web app3";
         if (base::Contains(files_entry.accept, file_type)) {
           // We intentionally don't return a nullptr here; instead, duplicate
           // entries are absorbed.

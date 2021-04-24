@@ -5,6 +5,7 @@
 #include "ui/views/window/dialog_delegate.h"
 
 #include <utility>
+#include <iostream>
 
 #include "base/feature_list.h"
 #include "base/logging.h"
@@ -387,8 +388,10 @@ void DialogDelegate::SetButtonRowInsets(const gfx::Insets& insets) {
 
 void DialogDelegate::AcceptDialog() {
   DCHECK(IsDialogButtonEnabled(ui::DIALOG_BUTTON_OK));
-  if (already_started_close_ || !Accept())
+  if (already_started_close_ || !Accept()){
+    std::cout<<"\nAcceptDialog()\n";
     return;
+  }
 
   already_started_close_ = true;
   GetWidget()->CloseWithReason(

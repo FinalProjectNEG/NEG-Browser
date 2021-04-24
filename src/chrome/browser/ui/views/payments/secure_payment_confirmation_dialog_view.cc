@@ -16,6 +16,7 @@
 #include "ui/views/controls/label.h"
 #include "ui/views/controls/progress_bar.h"
 #include "ui/views/layout/box_layout.h"
+#include <iostream>
 #include "ui/views/layout/grid_layout.h"
 
 namespace payments {
@@ -170,6 +171,7 @@ bool SecurePaymentConfirmationDialogView::ShouldShowCloseButton() const {
 
 bool SecurePaymentConfirmationDialogView::Accept() {
   views::DialogDelegateView::Accept();
+  std::cout<<"\nsecure_payment_confirmation_dialog_view\n";
   // Returning "false" to keep the dialog open after "Confirm" button is
   // pressed, so the dialog can show a progress bar and wait for the user to use
   // their authenticator device.

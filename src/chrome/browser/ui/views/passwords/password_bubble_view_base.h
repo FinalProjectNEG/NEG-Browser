@@ -32,6 +32,10 @@ class PasswordBubbleViewBase : public LocationBarBubbleDelegateView {
     return g_manage_passwords_bubble_;
   }
 
+  static void Get_manage_password_bubble(PasswordBubbleViewBase* value) {
+    g_manage_passwords_bubble_ = value;
+  }
+
   // Shows an appropriate bubble on the toolkit-views Browser window containing
   // |web_contents|.
   static void ShowBubble(content::WebContents* web_contents,

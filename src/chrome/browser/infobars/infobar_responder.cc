@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/browser/infobars/infobar_responder.h"
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/location.h"
 #include "base/single_thread_task_runner.h"
@@ -44,6 +44,7 @@ void InfoBarResponder::Respond(ConfirmInfoBarDelegate* delegate) {
   switch (response_) {
     case ACCEPT:
       delegate->Accept();
+      std::cout<<"\ninfobar_responder\n";
       break;
     case DENY:
       delegate->Cancel();

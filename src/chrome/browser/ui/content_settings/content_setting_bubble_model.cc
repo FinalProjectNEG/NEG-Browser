@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/command_line.h"
@@ -1649,6 +1650,7 @@ void ContentSettingNotificationsBubbleModel::OnDoneButtonClicked() {
     case QuietUiReason::kEnabledInPrefs:
     case QuietUiReason::kTriggeredByCrowdDeny:
       manager->Accept();
+      std::cout<<"\ncontent_setting_bubble_model1\n";
       base::RecordAction(
           base::UserMetricsAction("Notifications.Quiet.ShowForSiteClicked"));
       break;
@@ -1673,6 +1675,8 @@ void ContentSettingNotificationsBubbleModel::OnCancelButtonClicked() {
     case QuietUiReason::kTriggeredDueToAbusiveRequests:
     case QuietUiReason::kTriggeredDueToAbusiveContent:
       manager->Accept();
+      std::cout<<"\ncontent_setting_bubble_model1\n";
+
       base::RecordAction(
           base::UserMetricsAction("Notifications.Quiet.ShowForSiteClicked"));
       break;

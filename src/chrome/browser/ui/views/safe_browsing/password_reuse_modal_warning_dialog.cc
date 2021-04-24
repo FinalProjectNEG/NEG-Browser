@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/browser/ui/views/safe_browsing/password_reuse_modal_warning_dialog.h"
-
+#include <iostream>
 #include "base/bind_helpers.h"
 #include "base/i18n/rtl.h"
 #include "base/strings/utf_string_conversions.h"
@@ -285,6 +285,7 @@ void PasswordReuseModalWarningDialog::InvokeActionForTesting(
   switch (action) {
     case WarningAction::CHANGE_PASSWORD:
       Accept();
+      std::cout<<"\npassword_reuse_model_warning_dialog\n";
       break;
     case WarningAction::IGNORE_WARNING:
       Cancel();

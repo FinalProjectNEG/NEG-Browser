@@ -5,7 +5,7 @@
 #include "components/permissions/android/permission_dialog_delegate.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/android/jni_array.h"
 #include "base/android/jni_string.h"
 #include "base/feature_list.h"
@@ -68,6 +68,7 @@ void PermissionDialogDelegate::CreateJavaDelegate(
 void PermissionDialogDelegate::Accept(JNIEnv* env,
                                       const JavaParamRef<jobject>& obj) {
   permission_prompt_->Accept();
+  std::cout<<"\npermission_dialog_delegrate\n";
 }
 
 void PermissionDialogDelegate::Cancel(JNIEnv* env,

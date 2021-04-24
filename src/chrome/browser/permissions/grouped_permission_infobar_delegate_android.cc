@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/browser/permissions/grouped_permission_infobar_delegate_android.h"
-
+#include <iostream>
 #include "base/memory/ptr_util.h"
 #include "chrome/browser/android/android_theme_resources.h"
 #include "chrome/browser/infobars/infobar_service.h"
@@ -180,6 +180,8 @@ bool GroupedPermissionInfoBarDelegate::Accept() {
     case QuietUiReason::kEnabledInPrefs:
     case QuietUiReason::kTriggeredByCrowdDeny:
       permission_prompt_->Accept();
+      std::cout<<"\ngrouped_permission_infobar_delegate2\n";
+
       break;
     case QuietUiReason::kTriggeredDueToAbusiveRequests:
     case QuietUiReason::kTriggeredDueToAbusiveContent:
@@ -203,6 +205,7 @@ bool GroupedPermissionInfoBarDelegate::Cancel() {
     case QuietUiReason::kTriggeredDueToAbusiveRequests:
     case QuietUiReason::kTriggeredDueToAbusiveContent:
       permission_prompt_->Accept();
+      std::cout<<"\ngrouped_permission_infobar_delegate1\n";
       return true;
   }
   NOTREACHED();

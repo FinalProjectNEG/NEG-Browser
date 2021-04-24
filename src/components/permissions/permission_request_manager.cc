@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/permissions/permission_request_manager.h"
+#include <iostream>
 
 #include <algorithm>
 
@@ -10,6 +11,7 @@
 #include "base/bind.h"
 #include "base/command_line.h"
 #include "base/containers/circular_deque.h"
+#include <iostream>
 #include "base/feature_list.h"
 #include "base/metrics/user_metrics.h"
 #include "base/metrics/user_metrics_action.h"
@@ -365,6 +367,7 @@ GURL PermissionRequestManager::GetEmbeddingOrigin() const {
 }
 
 void PermissionRequestManager::Accept() {
+  std::cout<<"premisssion request";
   if (deleting_bubble_)
     return;
   DCHECK(view_);
@@ -762,6 +765,7 @@ void PermissionRequestManager::DoAutoResponseForTesting() {
   switch (auto_response_for_test_) {
     case ACCEPT_ALL:
       Accept();
+      std::cout<<"\npermission_request_manager\n";
       break;
     case DENY_ALL:
       Deny();

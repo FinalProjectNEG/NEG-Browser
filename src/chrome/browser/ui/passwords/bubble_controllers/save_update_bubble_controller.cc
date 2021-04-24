@@ -194,25 +194,6 @@ void SaveUpdateBubbleController::OnSaveClicked() {
   std::cout<<"\n\nkey11 = "<< *pass << "\n\n";
   //base::ScopedAllowBlocking allow_blocking;
 
-  const base::FilePath::CharType Database_profile[] = FILE_PATH_LITERAL("Login Data");
-  base::FilePath login_db_file_path = GetProfile()->GetPath().Append(Database_profile);
-                                        
-  
-  //bool h = db_->Open(login_db_file_path);
-  //std::cout<<"\nInit: "<<h<<"\n";
-//  std::unique_ptr<password_manager::LoginDatabase> login_db(password_manager::CreateLoginDatabaseForProfileStorage(GetProfile()->GetPath()));
-  
-  //  scoped_refptr<PasswordStoreX> ps;
-   // ps = new PasswordStoreX(std::move(login_db), GetProfile()->GetPrefs());
-
-
-
-
-
-//  password_manager::LoginDatabase db(login_db_file_path,password_manager::IsAccountStore(true));
-//  std::cout<<"Profile: "<<GetProfile()->GetPath();
-
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   if (delegate_) {
@@ -220,6 +201,15 @@ void SaveUpdateBubbleController::OnSaveClicked() {
 
     delegate_->SavePassword(pending_password_.username_value,
                             pending_password_.password_value);
+    if(delegate_->ispasswordExist_delegate == true){
+    	std::cout<<"\nTrue in delegate\n";
+    	ispasswordExist_bubbleController = true;
+    }
+    else{
+        std::cout<<"\nFalse in delegate\n";
+        ispasswordExist_bubbleController = false;
+    }
+    std::cout<<"\nLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL\n";
   }
 }
 

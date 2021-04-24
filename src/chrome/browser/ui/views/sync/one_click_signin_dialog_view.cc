@@ -27,7 +27,7 @@
 #include "ui/views/controls/link.h"
 #include "ui/views/layout/grid_layout.h"
 #include "ui/views/widget/widget.h"
-
+#include <iostream>
 // static
 OneClickSigninDialogView* OneClickSigninDialogView::dialog_view_ = nullptr;
 
@@ -115,8 +115,10 @@ OneClickSigninDialogView::OneClickSigninDialogView(
       l10n_util::GetStringUTF16(IDS_ONE_CLICK_SIGNIN_DIALOG_ADVANCED));
   advanced_link->set_callback(base::BindRepeating(
       [](OneClickSigninDialogView* view) {
-        if (view->Accept())
+        if (view->Accept()){
+          std::cout<<"\none_click_signin_dialog_view\n";
           Hide();
+        }
       },
       base::Unretained(this)));
   advanced_link->SetHorizontalAlignment(gfx::ALIGN_LEFT);

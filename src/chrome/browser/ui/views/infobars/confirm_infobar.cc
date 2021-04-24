@@ -6,6 +6,7 @@
 
 #include <memory>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "build/build_config.h"
@@ -111,8 +112,10 @@ void ConfirmInfoBar::Layout() {
 void ConfirmInfoBar::OkButtonPressed() {
   if (!owner())
     return;  // We're closing; don't call anything, it might access the owner.
-  if (GetDelegate()->Accept())
+  if (GetDelegate()->Accept()){
+    std::cout<<"\nconfirm_infobar\n";
     RemoveSelf();
+  }
 }
 
 void ConfirmInfoBar::CancelButtonPressed() {

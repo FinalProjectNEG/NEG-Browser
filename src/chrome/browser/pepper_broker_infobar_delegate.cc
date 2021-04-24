@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/browser/pepper_broker_infobar_delegate.h"
-
+#include <iostream>
 #include "base/memory/ptr_util.h"
 #include "base/metrics/user_metrics.h"
 #include "chrome/browser/infobars/infobar_service.h"
@@ -83,6 +83,7 @@ base::string16 PepperBrokerInfoBarDelegate::GetButtonLabel(
 }
 
 bool PepperBrokerInfoBarDelegate::Accept() {
+  std::cout<<"first";
   DispatchCallback(true);
   return true;
 }

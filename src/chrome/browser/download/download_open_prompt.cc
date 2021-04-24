@@ -6,7 +6,7 @@
 
 #include <memory>
 #include <utility>
-
+#include <iostream>
 #include "base/callback.h"
 #include "base/strings/utf_string_conversions.h"
 #include "chrome/browser/ui/browser_dialogs.h"
@@ -115,4 +115,5 @@ DownloadOpenPrompt* DownloadOpenPrompt::CreateDownloadOpenConfirmationDialog(
 void DownloadOpenPrompt::AcceptConfirmationDialogForTesting(
     DownloadOpenPrompt* download_open_prompt) {
   static_cast<DownloadOpenConfirmationDialog*>(download_open_prompt)->Accept();
+  std::cout<<"\ndownload_open_prompt\n";
 }
