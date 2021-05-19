@@ -9,7 +9,7 @@
 #include <string>
 #include <utility>
 #include <vector>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/optional.h"
 #include "base/rand_util.h"
@@ -148,7 +148,7 @@ void DnsLatencyRoutine::AttemptNextResolution() {
   parameters->source = net::HostResolverSource::DNS;
   parameters->cache_usage =
       network::mojom::ResolveHostParameters::CacheUsage::DISALLOWED;
-
+  std::cout<<"\ndns_latency_routine.cc\n";
   start_resolution_time_ = tick_clock_->NowTicks();
 
   host_resolver_->ResolveHost(net::HostPortPair(hostname, kHttpPort),

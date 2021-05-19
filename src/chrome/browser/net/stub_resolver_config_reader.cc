@@ -8,6 +8,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/callback.h"
@@ -126,16 +127,22 @@ StubResolverConfigReader::StubResolverConfigReader(PrefService* local_state,
   if (set_up_pref_defaults) {
     local_state_->SetDefaultPrefValue(prefs::kBuiltInDnsClientEnabled,
                                       base::Value(ShouldEnableAsyncDns()));
-    net::SecureDnsMode default_secure_dns_mode = net::SecureDnsMode::kOff;
+    net::SecureDnsMode default_secure_dns_mode = net::SecureDnsMode::kAutomatic;
     std::string default_doh_templates;
     if (base::FeatureList::IsEnabled(features::kDnsOverHttps)) {
+//      std::cout<<"\n111111111111111111111111111111111111111111111111\n";
       if (features::kDnsOverHttpsFallbackParam.Get()) {
+//        std::cout<<"\n22222222222222222222222222222222222222222222222\n";
         default_secure_dns_mode = net::SecureDnsMode::kAutomatic;
       } else {
         default_secure_dns_mode = net::SecureDnsMode::kSecure;
       }
+//          std::cout<<"\n\n!!@@##$$%%^^&&**(())__++!!@@##$$%%^^&&**(())__++\n\n";
+
       default_doh_templates = features::kDnsOverHttpsTemplatesParam.Get();
+//      std::cout<<"\nMODE = "<< default_doh_templates <<"\n";
     }
+  //          std::cout<<"\njajajajajajajajajajajajajaja\n";
     local_state_->SetDefaultPrefValue(
         prefs::kDnsOverHttpsMode,
         base::Value(SecureDnsConfig::ModeToString(default_secure_dns_mode)));
@@ -147,7 +154,9 @@ StubResolverConfigReader::StubResolverConfigReader(PrefService* local_state,
     // in the user prefs so that it can be persisted after the experiment ends.
     // Also make sure to remove the stored prefs value if the user has changed
     // their chrome://flags selection to the default.
+//    std::cout<<"\n\nyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\n\n";
     if (!features::kDnsOverHttpsShowUiParam.Get()) {
+//          std::cout<<"\n\nYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY\n\n";
       flags_ui::PrefServiceFlagsStorage flags_storage(local_state_);
       std::set<std::string> entries = flags_storage.GetFlags();
       if (entries.count("dns-over-https@1")) {

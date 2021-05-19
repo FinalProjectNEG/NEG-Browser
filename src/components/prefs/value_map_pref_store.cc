@@ -9,11 +9,13 @@
 
 #include "base/stl_util.h"
 #include "base/values.h"
+#include <iostream>
 
 ValueMapPrefStore::ValueMapPrefStore() {}
 
 bool ValueMapPrefStore::GetValue(const std::string& key,
                                  const base::Value** value) const {
+  //std::cout<<"\nValueMapPrefStore\n";
   return prefs_.GetValue(key, value);
 }
 

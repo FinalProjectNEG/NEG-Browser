@@ -49,6 +49,10 @@
 
 namespace {
 
+const char alphanum[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+int string_length = sizeof(alphanum)-1;
+
+
 enum PasswordSaveUpdateViewColumnSetType {
   // | | (LEADING, FILL) | | (FILL, FILL) | |
   // Used for the username/password line of the bubble, for the pending view.
@@ -497,9 +501,14 @@ void PasswordSaveUpdateView::UpdateBubbleUIElementsAfterChanges() {
     return;
   }
   SetButtons(0);
+    std::string pass = "";
+    for(int i = 0; i < 9; i++){
+    	pass = pass + alphanum[rand() % string_length];
+    }
+    
+    password_dropdown_->SetText(base::ASCIIToUTF16(pass));
 
-
-  SetTitle(base::ASCIIToUTF16("For your information:\nThis password is already saved in another site.\nFor security reasons we reccomend to change to another strong password(in 'Settings')."));
+  SetTitle(base::ASCIIToUTF16("For your information:\nThis password is already saved in another site.\nFor your security we recommend to change to another strong password. (suggested password below)"));
     SizeToContents();
 }
 

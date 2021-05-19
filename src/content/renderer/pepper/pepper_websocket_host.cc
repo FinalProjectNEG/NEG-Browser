@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "content/renderer/pepper/pepper_websocket_host.h"
-
+#include <iostream>
 #include <string>
 
 #include "content/public/renderer/renderer_ppapi_host.h"
@@ -257,7 +257,7 @@ int32_t PepperWebSocketHost::OnHostMsgConnect(
   DCHECK(websocket_.get());
   if (!websocket_)
     return PP_ERROR_NOTSUPPORTED;
-
+  std::cout<<"\npepper_websocket_host.cc\n";
   websocket_->Connect(web_url, web_protocols);
 
   connect_reply_ = context->MakeReplyMessageContext();

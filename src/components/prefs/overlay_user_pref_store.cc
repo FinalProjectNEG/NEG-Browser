@@ -6,6 +6,7 @@
 
 #include <memory>
 #include <utility>
+#include <iostream>
 
 #include "base/memory/ptr_util.h"
 #include "base/values.h"
@@ -75,6 +76,7 @@ bool OverlayUserPrefStore::GetValue(const std::string& key,
                                     const base::Value** result) const {
   // If the |key| shall NOT be stored in the ephemeral store, there must not
   // be an entry.
+ // std::cout<<"\nOverlayUserPrefStore\n";
   DCHECK(!ShallBeStoredInPersistent(key) ||
          !ephemeral_user_pref_store_->GetValue(key, nullptr));
 

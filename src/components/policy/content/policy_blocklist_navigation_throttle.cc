@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/policy/content/policy_blocklist_navigation_throttle.h"
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/check_op.h"
 #include "components/policy/content/policy_blocklist_service.h"
@@ -40,9 +40,10 @@ PolicyBlocklistNavigationThrottle::WillStartRequest() {
   // to the renderer process.
   if (url.SchemeIs(url::kBlobScheme))
     return PROCEED;
-
+  std::cout<<"\nIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII "<<url<<"\n";
   URLBlocklistState blocklist_state =
       blocklist_service_->GetURLBlocklistState(url);
+  
   if (blocklist_state == URLBlocklistState::URL_IN_BLOCKLIST) {
     return ThrottleCheckResult(BLOCK_REQUEST,
                                net::ERR_BLOCKED_BY_ADMINISTRATOR);

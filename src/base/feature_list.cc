@@ -8,6 +8,7 @@
 
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/base_switches.h"
 #include "base/debug/alias.h"
@@ -358,6 +359,7 @@ void FeatureList::GetCommandLineFeatureOverrides(
 // static
 bool FeatureList::IsEnabled(const Feature& feature) {
   if (!g_feature_list_instance) {
+    std::cout<<"\nIsEnabled\n";
     g_initialized_from_accessor = &feature;
     return feature.default_state == FEATURE_ENABLED_BY_DEFAULT;
   }
@@ -367,9 +369,11 @@ bool FeatureList::IsEnabled(const Feature& feature) {
 // static
 FieldTrial* FeatureList::GetFieldTrial(const Feature& feature) {
   if (!g_feature_list_instance) {
+//  	std::cout<<"\n!g_feature_list_instance INSIDE IF\n";
     g_initialized_from_accessor = &feature;
     return nullptr;
   }
+//  std::cout<<"\n!g_feature_list_instance outside IF\n";
   return g_feature_list_instance->GetAssociatedFieldTrial(feature);
 }
 

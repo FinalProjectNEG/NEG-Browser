@@ -9,6 +9,7 @@
 #include <memory>
 #include <set>
 #include <unordered_map>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/files/file_enumerator.h"
@@ -130,6 +131,7 @@ void DevToolsFileWatcher::SharedFileWatcher::AddWatch(
   if (!base::FilePathWatcher::RecursiveWatchAvailable())
     return;
   watchers_[path].reset(new base::FilePathWatcher());
+  std::cout<<"\n Devtools ====================== "<<path<<"\n";
   bool success = watchers_[path]->Watch(
       path, true,
       base::Bind(&SharedFileWatcher::DirectoryChanged, base::Unretained(this)));

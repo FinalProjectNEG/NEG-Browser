@@ -6,6 +6,7 @@
 
 #include <string>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/command_line.h"
@@ -58,7 +59,7 @@ void MixerConnection::Connect() {
   int port = GetSwitchValueNonNegativeInt(switches::kMixerServicePort,
                                           kDefaultTcpPort);
   connecting_socket_ = AudioSocketService::Connect(path, port);
-
+  std::cout<<"\nMIXER_CONNECTION.CC\n";
   int result = connecting_socket_->Connect(base::BindOnce(
       &MixerConnection::ConnectCallback, weak_factory_.GetWeakPtr()));
   if (result != net::ERR_IO_PENDING) {

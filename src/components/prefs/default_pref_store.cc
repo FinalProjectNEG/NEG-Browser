@@ -5,7 +5,7 @@
 #include "components/prefs/default_pref_store.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/check.h"
 
 using base::Value;
@@ -14,6 +14,7 @@ DefaultPrefStore::DefaultPrefStore() {}
 
 bool DefaultPrefStore::GetValue(const std::string& key,
                                 const Value** result) const {
+ // std::cout<<"\nDefaultPrefStore\n";
   return prefs_.GetValue(key, result);
 }
 

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <iostream>
 
 #include "chrome/browser/policy/policy_path_parser.h"
 
@@ -24,6 +25,8 @@ const char kUserNamePolicyVarName[] = "${user_name}";
 // system settings values.
 base::FilePath::StringType ExpandPathVariables(
     const base::FilePath::StringType& untranslated_string) {
+    
+    	std::cout<<"\n\nNOTTTTTTTTTTTTTTTTTTTTTT SUPPORTTTTTTTTTTTTTTTTTTTTTT!!!\n\n";
   base::FilePath::StringType result(untranslated_string);
   if (result.length() == 0)
     return result;
@@ -57,6 +60,8 @@ base::FilePath::StringType ExpandPathVariables(
 }
 
 void CheckUserDataDirPolicy(base::FilePath* user_data_dir) {
+
+
   // This function is not implemented in Linux because we don't support the
   // policy on this platform.
   NOTREACHED();

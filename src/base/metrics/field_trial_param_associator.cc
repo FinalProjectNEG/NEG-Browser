@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "base/metrics/field_trial_param_associator.h"
-
+#include <iostream>
 #include "base/logging.h"
 #include "base/metrics/field_trial.h"
 
@@ -42,17 +42,22 @@ bool FieldTrialParamAssociator::AssociateFieldTrialParams(
 bool FieldTrialParamAssociator::GetFieldTrialParams(
     const std::string& trial_name,
     FieldTrialParams* params) {
+ //     std::cout<<"\n3333333333333333333333333333333333333333333\n";
   FieldTrial* field_trial = FieldTrialList::Find(trial_name);
   if (!field_trial)
     return false;
+    
+
 
   // First try the local map, falling back to getting it from shared memory.
   if (GetFieldTrialParamsWithoutFallback(trial_name, field_trial->group_name(),
                                          params)) {
+
     return true;
   }
 
   // TODO(lawrencewu): add the params to field_trial_params_ for next time.
+   // std::cout<<"\n4444444444444444444444"<< trial_name <<"444444444444444444444\n";
   return FieldTrialList::GetParamsFromSharedMemory(field_trial, params);
 }
 

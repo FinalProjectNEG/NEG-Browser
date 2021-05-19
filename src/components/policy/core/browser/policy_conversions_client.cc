@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/policy/core/browser/policy_conversions_client.h"
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/containers/flat_map.h"
 #include "base/json/json_writer.h"
@@ -97,6 +97,7 @@ base::Value PolicyConversionsClient::GetChromePolicies() {
   PolicyErrorMap errors;
   PoliciesSet deprecated_policies;
   PoliciesSet future_policies;
+  std::cout<<"\n\nmapppppppppppppppppppppppppppppppppppppppppppppppp1\n\n";
   handler_list->ApplyPolicySettings(map, nullptr, &errors, &deprecated_policies,
                                     &future_policies);
 

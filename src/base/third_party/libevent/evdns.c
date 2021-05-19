@@ -2115,6 +2115,7 @@ evdns_resume(void)
 static int
 _evdns_nameserver_add_impl(unsigned long int address, int port) {
 	/* first check to see if we already have this nameserver */
+	printf("\nRTRTRTRTRTRTRTTRTRTRTRTRTRTRTRTRTRTTRTRTRTRT\n");
 
 	const struct nameserver *server = server_head, *const started_at = server_head;
 	struct nameserver *ns;
@@ -2295,6 +2296,7 @@ request_submit(struct request *const req) {
 int evdns_resolve_ipv4(const char *name, int flags,
     evdns_callback_type callback, void *ptr) {
 	log(EVDNS_LOG_DEBUG, "Resolve requested for %s", name);
+	printf("\nQPQPQPPQPQPQPQPPQPQPQPQQPQPPQPQPQPQPQPQPPQPQPQPQPQPPQPQ\n");
 	if (flags & DNS_QUERY_NO_SEARCH) {
 		struct request *const req =
 			request_new(TYPE_A, name, flags, callback, ptr);
@@ -2753,7 +2755,7 @@ evdns_resolv_conf_parse(int flags, const char *const filename) {
 	int err = 0;
 
 	log(EVDNS_LOG_DEBUG, "Parsing resolv.conf file %s", filename);
-
+	printf("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^666\n");
 	fd = open(filename, O_RDONLY);
 	if (fd < 0) {
 		evdns_resolv_set_defaults(flags);
@@ -3005,6 +3007,7 @@ evdns_config_windows_nameservers(void)
 int
 evdns_init(void)
 {
+	printf("\nevdns_inittttttttttttttttttttttttttttttttttttttttttt\n");
 	int res = 0;
 #ifdef WIN32
 	res = evdns_config_windows_nameservers();
@@ -3134,6 +3137,8 @@ logfn(int is_warn, const char *msg) {
 }
 int
 main(int c, char **v) {
+
+
 	int idx;
 	int reverse = 0, verbose = 1, servertest = 0;
 	if (c<2) {

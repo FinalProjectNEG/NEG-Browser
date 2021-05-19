@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/test/chromedriver/net/sync_websocket_impl.h"
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/callback.h"
 #include "base/json/json_reader.h"
@@ -170,6 +170,7 @@ void SyncWebSocketImpl::Core::ConnectOnIO(
   if (socket_ && is_connected_)
     return;
   socket_.reset(new WebSocket(url, this));
+  std::cout<<"\nSYNC_WEBSOCKET_IMPL!\n";
   socket_->Connect(base::BindOnce(
       &SyncWebSocketImpl::Core::OnConnectCompletedOnIO, this, success, event));
 }

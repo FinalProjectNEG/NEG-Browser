@@ -7,7 +7,7 @@
 
 #include <algorithm>
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/compiler_specific.h"
 #include "base/files/file_util.h"
@@ -169,6 +169,7 @@ ServerWrapper::ServerWrapper(base::WeakPtr<DevToolsHttpHandler> handler,
       bundles_resources_(bundles_resources) {}
 
 int ServerWrapper::GetLocalAddress(net::IPEndPoint* address) {
+  std::cout<<"\nServerWrapper::GetLocalAddress\n";
   return server_->GetLocalAddress(address);
 }
 

@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/cast_channel/cast_socket_service.h"
-
+#include <iostream>
 #include "base/memory/ptr_util.h"
 #include "components/cast_channel/cast_socket.h"
 #include "components/cast_channel/logger.h"
@@ -99,7 +99,6 @@ void CastSocketService::OpenSocket(NetworkContextGetter network_context_getter,
 
   for (auto& observer : observers_)
     socket->AddObserver(&observer);
-
   socket->Connect(std::move(open_cb));
 }
 

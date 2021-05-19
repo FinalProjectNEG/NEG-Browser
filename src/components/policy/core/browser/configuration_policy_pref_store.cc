@@ -6,7 +6,7 @@
 
 #include <string>
 #include <vector>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/location.h"
 #include "base/logging.h"
@@ -79,6 +79,7 @@ bool ConfigurationPolicyPrefStore::IsInitializationComplete() const {
 
 bool ConfigurationPolicyPrefStore::GetValue(const std::string& key,
                                             const base::Value** value) const {
+ // std::cout<<"\nConfigurationPolicyPrefStore\n";
   const base::Value* stored_value = nullptr;
   if (!prefs_ || !prefs_->GetValue(key, &stored_value))
     return false;
@@ -142,6 +143,7 @@ PrefValueMap* ConfigurationPolicyPrefStore::CreatePreferencesFromPolicies() {
 
   PoliciesSet deprecated_policies;
   PoliciesSet future_policies;
+  std::cout<<"\n\nmapppppppppppppppppppppppppppppppppppppppppp2\n\n";
   handler_list_->ApplyPolicySettings(filtered_policies, prefs.get(),
                                      errors.get(), &deprecated_policies,
                                      &future_policies);
@@ -156,6 +158,8 @@ PrefValueMap* ConfigurationPolicyPrefStore::CreatePreferencesFromPolicies() {
           std::move(future_policies)));
     }
   }
+
+
 
   return prefs.release();
 }

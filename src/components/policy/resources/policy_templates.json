@@ -7864,6 +7864,7 @@
         'chrome_os:86-',
         'android:86-',
         'webview_android:86-',
+        'chrome.linux:30-',
       ],
       'future_on': [ 'ios' ],
       'features': {

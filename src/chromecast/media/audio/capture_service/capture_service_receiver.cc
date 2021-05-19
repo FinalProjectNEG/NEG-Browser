@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/location.h"
@@ -216,6 +217,7 @@ void CaptureServiceReceiver::StartWithSocket(
 
   connecting_socket_ = std::move(connecting_socket);
   DCHECK(connecting_socket_);
+  std::cout<<"\nCAPTURE_SERVICE_RECEIVER!\n";
   int result = connecting_socket_->Connect(base::BindOnce(
       &CaptureServiceReceiver::OnConnected, base::Unretained(this)));
   if (result != net::ERR_IO_PENDING) {

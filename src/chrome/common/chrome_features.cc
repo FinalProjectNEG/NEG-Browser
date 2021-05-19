@@ -280,7 +280,7 @@ const base::Feature kDesktopPWAsWithoutExtensions{
 const base::Feature kDnsOverHttps {
   "DnsOverHttps",
 #if defined(OS_WIN) || defined(OS_CHROMEOS) || defined(OS_MAC) || \
-    defined(OS_ANDROID)
+    defined(OS_ANDROID) || defined(OS_LINUX)
       base::FEATURE_ENABLED_BY_DEFAULT
 #else
       base::FEATURE_DISABLED_BY_DEFAULT
@@ -302,7 +302,7 @@ const base::FeatureParam<bool> kDnsOverHttpsFallbackParam{&kDnsOverHttps,
 const base::FeatureParam<bool> kDnsOverHttpsShowUiParam {
   &kDnsOverHttps, "ShowUi",
 #if defined(OS_WIN) || defined(OS_CHROMEOS) || defined(OS_MAC) || \
-    defined(OS_ANDROID)
+    defined(OS_ANDROID) || defined(OS_LINUX)
       true
 #else
       false

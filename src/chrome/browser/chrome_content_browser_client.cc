@@ -9,6 +9,7 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/base_switches.h"
 #include "base/bind.h"
@@ -1014,6 +1015,7 @@ void LaunchURL(const GURL& url,
       PolicyBlocklistFactory::GetForBrowserContext(
           web_contents->GetBrowserContext());
   if (ShouldHonorPolicies() && service) {
+    std::cout<<"\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n";
     const policy::URLBlocklist::URLBlocklistState url_state =
         service->GetURLBlocklistState(url);
     is_whitelisted =
@@ -5548,6 +5550,7 @@ bool ChromeContentBrowserClient::ShouldBlockRendererDebugURL(
       PolicyBlocklistFactory::GetForBrowserContext(context);
 
   using URLBlocklistState = policy::URLBlocklist::URLBlocklistState;
+  std::cout<<"\n______________________________________________________________\n";
   URLBlocklistState blocklist_state = service->GetURLBlocklistState(url);
   return blocklist_state == URLBlocklistState::URL_IN_BLOCKLIST;
 }

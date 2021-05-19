@@ -5,7 +5,7 @@
 #include "components/policy/content/policy_blocklist_service.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/sequence_checker.h"
 #include "components/keyed_service/content/browser_context_dependency_manager.h"
@@ -41,6 +41,7 @@ PolicyBlocklistService::~PolicyBlocklistService() = default;
 
 policy::URLBlocklist::URLBlocklistState
 PolicyBlocklistService::GetURLBlocklistState(const GURL& url) const {
+  std::cout<<"\nLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL\n";
   return url_blocklist_manager_->GetURLBlocklistState(url);
 }
 
@@ -112,7 +113,9 @@ PolicyBlocklistFactory::~PolicyBlocklistFactory() = default;
 
 KeyedService* PolicyBlocklistFactory::BuildServiceInstanceFor(
     content::BrowserContext* context) const {
+
   PrefService* pref_service = user_prefs::UserPrefs::Get(context);
+      std::cout<<"\n-------------------------- PolicyBlocklistFactory::BuildServiceInstanceFor -----------------------\n";
   auto url_blocklist_manager =
       std::make_unique<policy::URLBlocklistManager>(pref_service);
   return new PolicyBlocklistService(context, std::move(url_blocklist_manager));

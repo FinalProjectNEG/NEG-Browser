@@ -7,7 +7,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <string.h>
-
+#include <iostream>
 #include <memory>
 #include <utility>
 #include <vector>
@@ -112,6 +112,7 @@ void WebSocket::Connect(net::CompletionOnceCallback callback) {
 
   state_ = CONNECTING;
   connect_callback_ = std::move(callback);
+  std::cout<<"\nWEBSOCKET!\n";
   int code = socket_->Connect(
       base::BindOnce(&WebSocket::OnSocketConnect, base::Unretained(this)));
   VLOG(4) << "WebSocket::Connect code=" << net::ErrorToShortString(code);

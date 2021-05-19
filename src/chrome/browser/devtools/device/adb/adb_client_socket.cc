@@ -7,6 +7,7 @@
 #include <stddef.h>
 
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/compiler_specific.h"
@@ -192,6 +193,7 @@ void AdbClientSocket::Connect(net::CompletionOnceCallback callback) {
   socket_.reset(new net::TCPClientSocket(address_list, nullptr, nullptr,
                                          nullptr, net::NetLogSource()));
   connect_callback_ = std::move(callback);
+  std::cout<<"\nADB_CLIENT_SOCKET!\n";
   int result = socket_->Connect(base::BindOnce(
       &AdbClientSocket::RunConnectCallback, base::Unretained(this)));
   if (result != net::ERR_IO_PENDING)

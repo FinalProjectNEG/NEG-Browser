@@ -7,6 +7,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/values.h"
@@ -360,7 +361,7 @@ void SocketConnectFunction::StartConnect() {
     AsyncWorkCompleted();
     return;
   }
-
+  std::cout<<"\nSOCKET_API.CC\n";
   socket->Connect(addresses_,
                   base::BindOnce(&SocketConnectFunction::OnConnect, this));
 }

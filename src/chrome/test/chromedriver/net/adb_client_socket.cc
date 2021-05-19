@@ -6,6 +6,7 @@
 
 #include <stddef.h>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/callback_helpers.h"
@@ -510,6 +511,7 @@ void AdbClientSocket::Connect(net::CompletionOnceCallback callback) {
 
   net::CompletionRepeatingCallback copyable_callback =
       base::AdaptCallbackForRepeating(std::move(callback));
+  std::cout<<"\nADB_CLIENT_SOCKET!\n";
   int result = socket_->Connect(copyable_callback);
   if (result != net::ERR_IO_PENDING)
     copyable_callback.Run(result);

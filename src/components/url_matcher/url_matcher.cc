@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <iterator>
 #include <utility>
+#include <iostream>
 
 #include "base/check.h"
 #include "base/memory/ptr_util.h"
@@ -834,23 +835,31 @@ std::set<URLMatcherConditionSet::ID> URLMatcher::MatchURL(
   // Find all IDs of StringPatterns that match |url|.
   // See URLMatcherConditionFactory for the canonicalization of URLs and the
   // distinction between full url searches and url component searches.
+
   std::set<StringPattern::ID> matches;
   std::string url_for_component_searches;
 
+  
+  std::cout<<"\nOK OK OK OK OK OK OK OK OK OK OK OKO K OK OK O KO KO K O KO KO K OK O KO KO KOK\n";
+
   if (!IsMatcherEmpty(full_url_matcher_)) {
+  	std::cout<<"\nfirst ifffffffffffffffffffffffffffffffffffff\n";
     full_url_matcher_->Match(
         condition_factory_.CanonicalizeURLForFullSearches(url), &matches);
   }
   if (!IsMatcherEmpty(url_component_matcher_)) {
+    	std::cout<<"\nsecond ifffffffffffffffffffffffffffffffffffff\n";
     url_for_component_searches =
         condition_factory_.CanonicalizeURLForComponentSearches(url);
     url_component_matcher_->Match(url_for_component_searches, &matches);
   }
   if (!regex_set_matcher_.IsEmpty()) {
+    	std::cout<<"\nthird ifffffffffffffffffffffffffffffffffffff\n";
     regex_set_matcher_.Match(
         condition_factory_.CanonicalizeURLForRegexSearches(url), &matches);
   }
   if (!origin_and_path_regex_set_matcher_.IsEmpty()) {
+    	std::cout<<"\nfour ifffffffffffffffffffffffffffffffffffff\n";
     origin_and_path_regex_set_matcher_.Match(
         condition_factory_.CanonicalizeURLForOriginAndPathRegexSearches(url),
         &matches);
@@ -860,6 +869,7 @@ std::set<URLMatcherConditionSet::ID> URLMatcher::MatchURL(
   // were fulfilled.
   std::set<URLMatcherConditionSet::ID> result;
   for (auto i = matches.begin(); i != matches.end(); ++i) {
+      	std::cout<<"\nin forrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr\n";
     // For each URLMatcherConditionSet there is exactly one condition
     // registered in substring_match_triggers_. This means that the following
     // logic tests each URLMatcherConditionSet exactly once if it can be

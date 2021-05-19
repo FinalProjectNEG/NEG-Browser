@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/mirroring/service/udp_socket_client.h"
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/callback.h"
 #include "net/base/address_family.h"
@@ -107,6 +107,7 @@ void UdpSocketClient::StartReceiving(
   network_context_->CreateUDPSocket(udp_socket_.BindNewPipeAndPassReceiver(),
                                     receiver_.BindNewPipeAndPassRemote());
   network::mojom::UDPSocketOptionsPtr options;
+  std::cout<<"\nUDP_SOCKET_CLIENT.CC\n";
   udp_socket_->Connect(remote_endpoint_, std::move(options),
                        base::BindOnce(&UdpSocketClient::OnSocketConnected,
                                       weak_factory_.GetWeakPtr()));

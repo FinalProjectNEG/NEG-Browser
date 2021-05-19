@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <map>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/check_op.h"
@@ -357,6 +358,7 @@ const base::Value* PrefService::GetUserPrefValue(
 void PrefService::SetDefaultPrefValue(const std::string& path,
                                       base::Value value) {
   DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
+  std::cout<<"\nFFFFF = "<<path<< " "<< value<<"\n";
   pref_registry_->SetDefaultPrefValue(path, std::move(value));
 }
 
@@ -372,7 +374,7 @@ const base::Value* PrefService::GetDefaultPrefValue(
 
 const base::ListValue* PrefService::GetList(const std::string& path) const {
   DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
-
+	std::cout<<"\nGetListtttttttttttttttttttttttt\n";
   const base::Value* value = GetPreferenceValueChecked(path);
   if (!value)
     return nullptr;
@@ -719,7 +721,7 @@ const base::Value* PrefService::GetPreferenceValue(
   CHECK(pref_registry_);
   CHECK(pref_registry_->defaults());
   CHECK(pref_value_store_);
-
+//	std::cout<<"\nIN BASE VALUE\n";
   const base::Value* default_value = nullptr;
   if (pref_registry_->defaults()->GetValue(path, &default_value)) {
     const base::Value* found_value = nullptr;

@@ -8,7 +8,7 @@
 
 #include <utility>
 #include <vector>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/metrics/histogram_macros.h"
 #include "base/sequence_checker.h"
@@ -46,8 +46,8 @@ const int kMaxResultAgeMs = 5000;
 
 // The public DNS servers used by the DnsProbeService to verify internet
 // connectivity.
-const uint8_t kGooglePublicDns1[] = {8, 8, 8, 8};
-const uint8_t kGooglePublicDns2[] = {8, 8, 4, 4};
+const uint8_t kGooglePublicDns1[] = {1, 1, 1, 1};
+const uint8_t kGooglePublicDns2[] = {1, 0, 0, 1};
 
 void HistogramProbe(error_page::DnsProbeStatus status,
                     base::TimeDelta elapsed) {
@@ -229,6 +229,7 @@ void DnsProbeServiceImpl::SetUpCurrentConfigRunner() {
               false /* force_check_parental_controls_for_automatic_mode */);
 
   current_config_secure_dns_mode_ = secure_dns_config.mode();
+//  std::cout<<"\nXXXXXXXXXXXXXXXXXXXXXXXXXXX ===== "<<current_config_secure_dns_mode_<<"\n";
 
   net::DnsConfigOverrides current_config_overrides;
   current_config_overrides.search = std::vector<std::string>();

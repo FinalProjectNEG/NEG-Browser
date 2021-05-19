@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cstring>
 #include <vector>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/callback_helpers.h"
 #include "base/check_op.h"
@@ -186,6 +186,7 @@ int FakeStreamSocket::GetPeerAddress(net::IPEndPoint* address) const {
 }
 
 int FakeStreamSocket::GetLocalAddress(net::IPEndPoint* address) const {
+  std::cout<<"\nFakeStreamSocket::GetLocalAddress\n";
   DCHECK(address);
   *address = local_address_;
   return net::OK;

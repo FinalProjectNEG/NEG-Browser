@@ -8,6 +8,7 @@
 
 #include <mntent.h>
 #include <stddef.h>
+#include <iostream>
 #include <stdio.h>
 
 #include "base/bind.h"
@@ -40,6 +41,7 @@ MtabWatcherLinux::MtabWatcherLinux(const base::FilePath& mtab_path,
                                    const UpdateMtabCallback& callback)
     : mtab_path_(mtab_path), callback_(callback) {
   DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
+  std::cout<<"\n MTABBB == "<<mtab_path_<<"\n";
   bool ret = file_watcher_.Watch(
       mtab_path_, false,
       base::BindRepeating(&MtabWatcherLinux::OnFilePathChanged,

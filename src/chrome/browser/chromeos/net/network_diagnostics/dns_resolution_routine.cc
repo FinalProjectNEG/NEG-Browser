@@ -6,6 +6,8 @@
 
 #include <iterator>
 #include <utility>
+#include <iostream>
+
 
 #include "base/bind.h"
 #include "base/optional.h"
@@ -94,7 +96,6 @@ void DnsResolutionRoutine::AttemptResolution() {
   parameters->source = net::HostResolverSource::DNS;
   parameters->cache_usage =
       network::mojom::ResolveHostParameters::CacheUsage::DISALLOWED;
-
   host_resolver_->ResolveHost(net::HostPortPair(kHostname, kHttpPort),
                               net::NetworkIsolationKey::CreateTransient(),
                               std::move(parameters),

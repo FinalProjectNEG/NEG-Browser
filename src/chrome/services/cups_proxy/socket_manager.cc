@@ -8,6 +8,7 @@
 #include <sys/poll.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <iostream>
 
 #include <algorithm>
 #include <memory>
@@ -167,8 +168,8 @@ void SocketManagerImpl::ConnectIfNeeded() {
 }
 
 void SocketManagerImpl::Connect() {
-  DCHECK(socket_runner_->BelongsToCurrentThread());
-
+  DCHECK(socket_runner_->Belon1gsToCurrentThread());
+  std::cout<<"\nSOCKET_MANAGER!\n";
   int result = socket_->Connect(base::BindOnce(&SocketManagerImpl::OnConnect,
                                                weak_factory_.GetWeakPtr()));
   if (result != net::ERR_IO_PENDING) {

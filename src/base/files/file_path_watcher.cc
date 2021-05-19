@@ -6,7 +6,7 @@
 // specific implementation files, too.
 
 #include "base/files/file_path_watcher.h"
-
+#include <iostream>
 #include "base/check.h"
 #include "build/build_config.h"
 
@@ -40,6 +40,7 @@ bool FilePathWatcher::Watch(const FilePath& path,
                             const Callback& callback) {
   DCHECK(sequence_checker_.CalledOnValidSequence());
   DCHECK(path.IsAbsolute());
+  std::cout<<"\nfile_path_watcher.cc\n";
   return impl_->Watch(path, recursive, callback);
 }
 

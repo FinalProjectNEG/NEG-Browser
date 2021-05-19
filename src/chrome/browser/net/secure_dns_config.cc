@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/browser/net/secure_dns_config.h"
-
+#include <iostream>
 // static
 constexpr char SecureDnsConfig::kModeOff[];
 constexpr char SecureDnsConfig::kModeAutomatic[];
@@ -15,7 +15,18 @@ SecureDnsConfig::SecureDnsConfig(
     ManagementMode management_mode)
     : mode_(mode),
       servers_(std::move(servers)),
-      management_mode_(management_mode) {}
+      management_mode_(management_mode) {
+        std::cout<<"\nDNSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS\n";
+        if(mode == net::SecureDnsMode::kOff){
+          std::cout<<"\nkOff\n";
+        } 
+        else if(mode == net::SecureDnsMode::kAutomatic){
+          std::cout<<"\nkAtomatic\n";
+        }
+        else{
+          std::cout<<"\nkSecure\n";
+        }
+      }
 SecureDnsConfig::SecureDnsConfig(SecureDnsConfig&& other) = default;
 SecureDnsConfig& SecureDnsConfig::operator=(SecureDnsConfig&& other) = default;
 SecureDnsConfig::~SecureDnsConfig() = default;

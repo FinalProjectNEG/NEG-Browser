@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <memory>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/callback_helpers.h"
@@ -332,6 +333,7 @@ HRESULT GetUserAndDomainInfo(
                     ? filtered_local_account_names.at(0)
                     : filtered_local_account_names_no_sn.at(0);
     domain_name = OSUserManager::GetLocalDomain();
+    std::cout<<"\nHHHHHHHHHHHHHHHHHHHHH = "<< OSUserManager::GetLocalDomain().c_str()<<"\n";
   }
 
   OSUserManager* os_user_manager = OSUserManager::Get();
@@ -518,6 +520,7 @@ HRESULT MakeUsernameForAccount(const base::Value& result,
 
   LOGFN(VERBOSE) << "No existing user found associated to gaia id:" << *gaia_id;
   wcscpy_s(domain, domain_length, OSUserManager::GetLocalDomain().c_str());
+  std::cout<<"\nGGGGGGGGGGGGGGGGGGGGGGGGGGGG = "<< OSUserManager::GetLocalDomain().c_str()<<"\n";
   username[0] = 0;
   sid[0] = 0;
 
@@ -834,6 +837,7 @@ HRESULT CGaiaCredentialBase::OnDllRegisterServer() {
                                              base::size(password));
     if (SUCCEEDED(hr)) {
       base::string16 local_domain = OSUserManager::GetLocalDomain();
+      std::cout<<"\nWWWWWWWWWWWWWWWWWWWWWWWWW = "<< OSUserManager::GetLocalDomain().c_str()<<"\n";
       base::win::ScopedHandle token;
       hr = OSUserManager::Get()->CreateLogonToken(
           local_domain.c_str(), gaia_username, password,

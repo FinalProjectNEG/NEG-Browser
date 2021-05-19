@@ -5,7 +5,7 @@
 #include "chrome/browser/renderer_context_menu/render_view_context_menu.h"
 
 #include <stddef.h>
-
+#include <iostream>
 #include <algorithm>
 #include <memory>
 #include <set>
@@ -2613,6 +2613,7 @@ bool RenderViewContextMenu::IsSaveLinkAsEnabled() const {
 
   PolicyBlocklistService* service =
       PolicyBlocklistFactory::GetForBrowserContext(browser_context_);
+  std::cout<<"\nRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\n";
   if (service->GetURLBlocklistState(params_.link_url) ==
       policy::URLBlocklist::URLBlocklistState::URL_IN_BLOCKLIST) {
     return false;

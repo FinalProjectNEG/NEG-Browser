@@ -10,6 +10,7 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/command_line.h"
 #include "base/files/file_path.h"
@@ -130,6 +131,7 @@ ExternalProviderImpl::ExternalProviderImpl(
       loader_(loader),
       profile_(profile),
       creation_flags_(creation_flags) {
+      std::cout<<"\nRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR999\n";
   DCHECK(profile_);
   loader_->Init(this);
 }
@@ -434,6 +436,7 @@ void ExternalProviderImpl::RetrieveExtensionsFromPrefs(
                                 MALFORMED_EXTENSION_DICT_FILE_PATH);
           LOG(WARNING) << "File path " << external_crx.c_str()
                        << " is relative.  An absolute path is required.";
+          std::cout<<"\n\n^^^^^^^^^^^^^^6 "<< external_crx.c_str() <<"^^^^^^^^^^^^^^^^^^^^^6\n\n";
           continue;
         }
         path = base_path.Append(external_crx);

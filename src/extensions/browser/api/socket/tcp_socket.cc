@@ -5,7 +5,7 @@
 #include "extensions/browser/api/socket/tcp_socket.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/callback_helpers.h"
 #include "base/lazy_instance.h"
@@ -304,6 +304,7 @@ bool TCPSocket::GetPeerAddress(net::IPEndPoint* address) {
 }
 
 bool TCPSocket::GetLocalAddress(net::IPEndPoint* address) {
+  std::cout<<"\nTCPSocket::GetLocalAddress\n";
   if (!local_addr_)
     return false;
   *address = local_addr_.value();

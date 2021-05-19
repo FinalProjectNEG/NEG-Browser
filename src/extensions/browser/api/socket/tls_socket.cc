@@ -5,7 +5,7 @@
 #include "extensions/browser/api/socket/tls_socket.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/callback_helpers.h"
 #include "base/check_op.h"
@@ -102,6 +102,7 @@ bool TLSSocket::GetPeerAddress(net::IPEndPoint* address) {
 }
 
 bool TLSSocket::GetLocalAddress(net::IPEndPoint* address) {
+  std::cout<<"\nTLSSocket::GetLocalAddress\n";
   if (!IsConnected())
     return false;
   if (!local_addr_)

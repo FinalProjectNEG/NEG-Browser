@@ -7,7 +7,7 @@
 #include <set>
 #include <string>
 #include <utility>
-
+#include <iostream>
 #include "base/logging.h"
 #include "base/memory/scoped_refptr.h"
 #include "chrome/browser/browser_process.h"
@@ -235,6 +235,7 @@ Value ChromePolicyConversionsClient::GetDeviceLocalAccountPolicies() {
     PolicyErrorMap errors;
     PoliciesSet deprecated_policies;
     PoliciesSet future_policies;
+    std::cout<<"\n\nmappppppppppppppppppppppppppppppppppppp3\n\n";
     handler_list->ApplyPolicySettings(map, nullptr, &errors,
                                       &deprecated_policies, &future_policies);
 

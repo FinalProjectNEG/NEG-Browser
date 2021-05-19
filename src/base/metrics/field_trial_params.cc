@@ -7,6 +7,7 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/feature_list.h"
 #include "base/metrics/field_trial.h"
@@ -104,24 +105,30 @@ bool GetFieldTrialParamsByFeature(const Feature& feature,
 
 std::string GetFieldTrialParamValue(const std::string& trial_name,
                                     const std::string& param_name) {
+ // std::cout<<"\nTRIAL_NAME = "<<trial_name<<" PARAM_NAME = "<<param_name<<"\n";
   FieldTrialParams params;
   if (GetFieldTrialParams(trial_name, &params)) {
     auto it = params.find(param_name);
     if (it != params.end())
       return it->second;
   }
+//  std::cout<<"\n ;;;;;;;;;;;;;;;;;; GetFieldTrialParamValue ;;;;;;;;;;;;;;;; \n";
   return std::string();
 }
 
 std::string GetFieldTrialParamValueByFeature(const Feature& feature,
                                              const std::string& param_name) {
-  if (!FeatureList::IsEnabled(feature))
+  if (!FeatureList::IsEnabled(feature)){
+   // std::cout<<"\n1111111 GetFieldTrialParamValueByFeatureeeeeeeeeeeeeeeeeeeeee 111111111\n";
     return std::string();
+  }
 
   FieldTrial* trial = FeatureList::GetFieldTrial(feature);
-  if (!trial)
+  if (!trial){
+  //  std::cout<<"\n22222222222 GetFieldTrialParamValueByFeatureeeeeeeeeeeeeeeeeeeeee 222222222\n";
     return std::string();
-
+  }
+ // std::cout<<"\n33333333 GetFieldTrialParamValueByFeatureeeeeeeeeeeeeeeeeeeeee 33333333\n";
   return GetFieldTrialParamValue(trial->trial_name(), param_name);
 }
 

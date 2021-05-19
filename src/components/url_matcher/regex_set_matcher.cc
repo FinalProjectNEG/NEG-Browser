@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <utility>
+#include <iostream>
 
 #include "base/logging.h"
 #include "base/strings/string_util.h"
@@ -38,6 +39,7 @@ void RegexSetMatcher::ClearPatterns() {
 
 bool RegexSetMatcher::Match(const std::string& text,
                             std::set<StringPattern::ID>* matches) const {
+  std::cout<<"\n\nDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD = "<<text<<"\n\n";
   size_t old_number_of_matches = matches->size();
   if (regexes_.empty())
     return false;

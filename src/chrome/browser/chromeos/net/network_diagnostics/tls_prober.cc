@@ -5,6 +5,8 @@
 #include "chrome/browser/chromeos/net/network_diagnostics/tls_prober.h"
 
 #include <utility>
+#include <iostream>
+
 
 #include "base/bind.h"
 #include "base/bind_helpers.h"
@@ -117,6 +119,7 @@ void TlsProber::HostResolver::Run(const GURL& url) {
   parameters->source = net::HostResolverSource::DNS;
   parameters->cache_usage =
       network::mojom::ResolveHostParameters::CacheUsage::DISALLOWED;
+  std::cout<<"\ntls_prober.cc\n";
 
   host_resolver_->ResolveHost(net::HostPortPair::FromURL(url),
                               net::NetworkIsolationKey::CreateTransient(),

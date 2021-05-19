@@ -273,12 +273,7 @@ const PasswordForm* GetMatchForUpdating(
   // This is the case for the credential management API. It should not depend on
   // form managers. Once that's the case, this should be turned into a DCHECK.
   // TODO(crbug/947030): turn it into a DCHECK.
-      	int i=0;
-    for (auto it = credentials.cbegin(); it != credentials.cend(); it++)
-    {
-        std::cout << "\n\nfffffff" << it[i]->url << "fffffff\n\n\n";
-        i++;
-    }
+
   if (!submitted_form.federation_origin.opaque())
     return nullptr;
 

@@ -11,6 +11,7 @@
 #include <set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/check.h"
@@ -82,9 +83,11 @@ constexpr char kIosNtpHost[] = "newtab";
 // Returns a blocklist based on the given |block| and |allow| pattern lists.
 std::unique_ptr<URLBlocklist> BuildBlocklist(const base::ListValue* block,
                                              const base::ListValue* allow) {
+  std::cout<<"\nBuildBlocklist - START\n";
   auto blocklist = std::make_unique<URLBlocklist>();
   blocklist->Block(block);
   blocklist->Allow(allow);
+  std::cout<<"\nBuildBlocklist - FINISH\n";
   return blocklist;
 }
 
@@ -119,6 +122,7 @@ URLBlocklist::URLBlocklist() : id_(0), url_matcher_(new URLMatcher) {}
 URLBlocklist::~URLBlocklist() = default;
 
 void URLBlocklist::Block(const base::ListValue* filters) {
+
   url_util::AddFilters(url_matcher_.get(), false, &id_, filters, &filters_);
 }
 
@@ -127,14 +131,18 @@ void URLBlocklist::Allow(const base::ListValue* filters) {
 }
 
 bool URLBlocklist::IsURLBlocked(const GURL& url) const {
+    std::cout<<"\nMATBE!!!!!!!!!!!!!!!!!!!!!!!!!1\n";
+
   return URLBlocklist::GetURLBlocklistState(url) ==
          URLBlocklist::URLBlocklistState::URL_IN_BLOCKLIST;
 }
 
 URLBlocklist::URLBlocklistState URLBlocklist::GetURLBlocklistState(
     const GURL& url) const {
+    std::cout<<"\nBLOCK!!!!!!!!!!!!!!!!!!!!!!!!!1\n";
   std::set<URLMatcherConditionSet::ID> matching_ids =
       url_matcher_->MatchURL(url);
+      
 
   const FilterComponents* max = nullptr;
   for (auto id = matching_ids.begin(); id != matching_ids.end(); ++id) {
@@ -146,8 +154,10 @@ URLBlocklist::URLBlocklistState URLBlocklist::GetURLBlocklistState(
   }
 
   // Default neutral.
-  if (!max)
+  if (!max){
+  std::cout<<"\n\n 098098098098098098098098098098098098098098098098098 \n\n";
     return URLBlocklist::URLBlocklistState::URL_NEUTRAL_STATE;
+  }
 
   // Some of the internal Chrome URLs are not affected by the "*" in the
   // blocklist. Note that the "*" is the lowest priority filter possible, so
@@ -196,6 +206,7 @@ bool URLBlocklist::FilterTakesPrecedence(const FilterComponents& lhs,
 
 URLBlocklistManager::URLBlocklistManager(PrefService* pref_service)
     : pref_service_(pref_service), blocklist_(new URLBlocklist) {
+    std::cout<<"\nURLBlocklistManager****************************\n";
   // This class assumes that it is created on the same thread that
   // |pref_service_| lives on.
   ui_task_runner_ = base::SequencedTaskRunnerHandle::Get();
@@ -212,6 +223,7 @@ URLBlocklistManager::URLBlocklistManager(PrefService* pref_service)
   // startup.
   if (pref_service_->HasPrefPath(policy_prefs::kUrlBlacklist) ||
       pref_service_->HasPrefPath(policy_prefs::kUrlWhitelist)) {
+      std::cout<<"\nsapirrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr@@@@@@@\n";
     SetBlocklist(
         BuildBlocklist(pref_service_->GetList(policy_prefs::kUrlBlacklist),
                        pref_service_->GetList(policy_prefs::kUrlWhitelist)));
@@ -253,6 +265,7 @@ void URLBlocklistManager::Update() {
 
 void URLBlocklistManager::SetBlocklist(
     std::unique_ptr<URLBlocklist> blocklist) {
+    std::cout<<"\nGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG\n";
   DCHECK(ui_task_runner_->RunsTasksInCurrentSequence());
   blocklist_ = std::move(blocklist);
 }
@@ -268,6 +281,7 @@ bool URLBlocklistManager::IsURLBlocked(const GURL& url) const {
 URLBlocklist::URLBlocklistState URLBlocklistManager::GetURLBlocklistState(
     const GURL& url) const {
   DCHECK(ui_task_runner_->RunsTasksInCurrentSequence());
+  std::cout<<"\n///////////////////////////////////////////////////////////\n";
   return blocklist_->GetURLBlocklistState(url);
 }
 

@@ -5,6 +5,7 @@
 #include "chrome/browser/net/dns_probe_runner.h"
 
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/optional.h"
@@ -97,6 +98,7 @@ void DnsProbeRunner::RunProbe(base::OnceClosure callback) {
   parameters->source = net::HostResolverSource::DNS;
   parameters->cache_usage =
       network::mojom::ResolveHostParameters::CacheUsage::DISALLOWED;
+  std::cout<<"\ndns_probe_runner\n";
 
   // Use transient NIKs - don't want cached responses anyways, so no benefit
   // from sharing a cache, beyond multiple probes not evicting anything.

@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/prefs/in_memory_pref_store.h"
+#include <iostream>
 
 #include <memory>
 #include <utility>
@@ -15,6 +16,7 @@ InMemoryPrefStore::~InMemoryPrefStore() {}
 
 bool InMemoryPrefStore::GetValue(const std::string& key,
                                  const base::Value** value) const {
+ // std::cout<<"\nInMemoryPrefStore\n";
   return prefs_.GetValue(key, value);
 }
 

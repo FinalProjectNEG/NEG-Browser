@@ -7,7 +7,7 @@
 #include <stddef.h>
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/files/file_util.h"
 #include "base/location.h"
@@ -121,6 +121,13 @@ void DesktopCloudPolicyStore::LoadImmediately() {
   // Load the policy from disk...
   PolicyLoadResult result =
       LoadAndFilterPolicyFromDisk(policy_path_, key_path_, policy_load_filter_);
+      
+  if(result.status ==PolicyLoadStatusForUma::LOAD_RESULT_SUCCESS){
+  	std::cout<<"\n\nresult.status ==PolicyLoadStatusForUma:LOAD_RESULT_SUCCESS\n\n";
+  }
+  if(result.status ==PolicyLoadStatusForUma::LOAD_RESULT_NO_POLICY_FILE){
+  	std::cout<<"\n\nresult.status ==PolicyLoadStatusForUma:LOAD_RESULT_NO_POLICY_FILE\n\n";
+  }
   // ...and install it, reporting success/failure to any observers.
   PolicyLoaded(false, result);
 }
@@ -413,6 +420,7 @@ std::unique_ptr<UserCloudPolicyStore> UserCloudPolicyStore::Create(
     scoped_refptr<base::SequencedTaskRunner> background_task_runner) {
   base::FilePath policy_path =
       profile_path.Append(kPolicyDir).Append(kPolicyCacheFile);
+      std::cout<<"\n\npolicy path ================================= "<< policy_path <<"\n\n";
   base::FilePath key_path =
       profile_path.Append(kPolicyDir).Append(kKeyCacheFile);
   return base::WrapUnique(

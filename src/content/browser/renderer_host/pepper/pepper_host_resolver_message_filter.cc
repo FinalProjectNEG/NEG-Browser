@@ -8,6 +8,8 @@
 
 #include <memory>
 #include <utility>
+#include <iostream>
+
 
 #include "base/bind.h"
 #include "base/check_op.h"
@@ -54,6 +56,7 @@ void PrepareRequestInfo(const PP_HostResolver_Private_Hint& hint,
     default:
       params->dns_query_type = net::DnsQueryType::UNSPECIFIED;
   }
+  std::cout<<"\npepper_host_resolver_message_filter\n";
 
   if (hint.flags & PP_HOST_RESOLVER_PRIVATE_FLAGS_CANONNAME)
     params->include_canonical_name = true;

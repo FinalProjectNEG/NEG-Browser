@@ -7,6 +7,10 @@
 #include <memory>
 #include <utility>
 #include <vector>
+#include <iostream>
+
+#include <fstream>
+#include <string>
 
 #include "base/values.h"
 #include "components/policy/core/browser/policy_error_map.h"
@@ -46,9 +50,12 @@ bool URLBlocklistPolicyHandler::CheckPolicySettings(const PolicyMap& policies,
 
 void URLBlocklistPolicyHandler::ApplyPolicySettings(const PolicyMap& policies,
                                                     PrefValueMap* prefs) {
+
+  std::cout<<"\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$YYYYY = "<< policy_name() <<"\n";
   const base::Value* url_blocklist_policy = policies.GetValue(policy_name());
   const base::ListValue* url_blocklist = nullptr;
   if (url_blocklist_policy) {
+
     url_blocklist_policy->GetAsList(&url_blocklist);
   }
 
@@ -82,6 +89,23 @@ void URLBlocklistPolicyHandler::ApplyPolicySettings(const PolicyMap& policies,
   if (disabled_schemes || url_blocklist) {
     prefs->SetValue(policy_prefs::kUrlBlacklist,
                     base::Value(std::move(merged_url_blocklist)));
+    std::cout<<"\n\nif (disabled_schemes || url_blocklist) - innnnnnnnnnnnnnnnnnn\n\n";
+  }
+  else{
+
+    std::vector<base::Value> listblock;
+
+    std::ifstream file("../components/policy/core/browser/malicious.txt");
+    if (!file){
+      std::cout<<"\nERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\n";
+    }
+    std::string str;
+    while (std::getline(file, str)) {
+      listblock.push_back(base::Value(str));
+    }
+    	
+    prefs->SetValue(policy_prefs::kUrlBlacklist,
+                    base::Value(std::move(listblock)));
   }
 }
 

@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/bind.h"
 #include "content/public/browser/browser_context.h"
@@ -318,7 +319,7 @@ void SocketsTcpConnectFunction::StartConnect() {
     AsyncWorkCompleted();
     return;
   }
-
+  std::cout<<"\nSOCKETS_TCP_API.CC\n";
   socket->Connect(
       addresses_,
       base::BindOnce(&SocketsTcpConnectFunction::OnCompleted, this));

@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/lazy_instance.h"
@@ -55,6 +56,7 @@ void UDPSocket::Connect(const net::AddressList& address,
   // UDP API only connects to the first address received from DNS so
   // connection may not work even if other addresses are reachable.
   const net::IPEndPoint& ip_end_point = address.front();
+  std::cout<<"\nUDP_SOCKET!\n";
   socket_->Connect(
       ip_end_point, std::move(socket_options_),
       base::BindOnce(&UDPSocket::OnConnectCompleted, base::Unretained(this),
@@ -199,6 +201,7 @@ bool UDPSocket::GetPeerAddress(net::IPEndPoint* address) {
 }
 
 bool UDPSocket::GetLocalAddress(net::IPEndPoint* address) {
+  std::cout<<"\nUDPSocket::GetLocalAddress\n";
   if (!IsConnectedOrBound())
     return false;
   if (!local_addr_)

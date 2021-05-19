@@ -26,6 +26,7 @@
 #include "net/base/network_isolation_key.h"
 #include "net/socket/client_socket_factory.h"
 #include "net/socket/transport_client_socket.h"
+#include <iostream>
 #include "services/network/public/mojom/network_context.mojom.h"
 
 namespace chromeos {
@@ -158,7 +159,7 @@ void HttpFirewallRoutine::HostResolver::Run(const std::string& hostname) {
   parameters->source = net::HostResolverSource::DNS;
   parameters->cache_usage =
       network::mojom::ResolveHostParameters::CacheUsage::DISALLOWED;
-
+  std::cout<<"\nhttp_firewall_routine.cc\n";
   host_resolver_->ResolveHost(net::HostPortPair(hostname, kHttpPort),
                               net::NetworkIsolationKey::CreateTransient(),
                               std::move(parameters),

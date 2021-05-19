@@ -395,6 +395,7 @@ bool ComponentCloudPolicyStore::ValidateData(const std::string& data,
 
 bool ComponentCloudPolicyStore::ParsePolicy(const std::string& data,
                                             PolicyMap* policy) {
+  std::cout<<"\n\nJSONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN ===== "<< data <<"\n\n";
   base::JSONReader::ValueWithError value_with_error =
       base::JSONReader::ReadAndReturnValueWithError(
           data, base::JSONParserOptions::JSON_ALLOW_TRAILING_COMMAS);

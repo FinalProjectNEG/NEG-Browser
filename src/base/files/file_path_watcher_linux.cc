@@ -19,6 +19,7 @@
 #include <set>
 #include <unordered_map>
 #include <utility>
+#include <iostream>
 #include <vector>
 
 #include "base/bind.h"
@@ -520,10 +521,11 @@ void FilePathWatcherImpl::DecreaseWatch() {
 bool FilePathWatcherImpl::Watch(const FilePath& path,
                                 bool recursive,
                                 const FilePathWatcher::Callback& callback) {
+  
   DCHECK(target_.empty());
-
   set_task_runner(SequencedTaskRunnerHandle::Get());
   callback_ = callback;
+
   target_ = path;
   recursive_ = recursive;
 
@@ -569,6 +571,7 @@ void FilePathWatcherImpl::UpdateWatches() {
     InotifyReader::Watch old_watch = watch_entry.watch;
     watch_entry.watch = InotifyReader::kInvalidWatch;
     watch_entry.linkname.clear();
+
     watch_entry.watch = g_inotify_reader.Get().AddWatch(path, this);
     if (watch_entry.watch == InotifyReader::kWatchLimitExceeded)
       break;
@@ -582,6 +585,7 @@ void FilePathWatcherImpl::UpdateWatches() {
     }
     if (old_watch != watch_entry.watch)
       g_inotify_reader.Get().RemoveWatch(old_watch, this);
+    
     path = path.Append(watch_entry.subdir);
   }
 

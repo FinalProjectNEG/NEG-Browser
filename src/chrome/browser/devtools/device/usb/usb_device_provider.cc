@@ -5,7 +5,7 @@
 #include "chrome/browser/devtools/device/usb/usb_device_provider.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/memory/ptr_util.h"
 #include "base/strings/stringprintf.h"
@@ -74,6 +74,7 @@ void RunCommand(scoped_refptr<AndroidUsbDevice> device,
     callback.Run(net::ERR_CONNECTION_FAILED, std::string());
     return;
   }
+  std::cout<<"\nUSB_DEVICE_PROVIDER.CC\n";
   int result =
       socket->Connect(base::BindOnce(&OpenedForCommand, callback, socket));
   if (result != net::ERR_IO_PENDING)
@@ -121,6 +122,7 @@ void UsbDeviceProvider::OpenSocket(const std::string& serial,
                  base::WrapUnique<net::StreamSocket>(NULL));
     return;
   }
+  std::cout<<"\nUSB_DEVICE_PROVIDER2\n";
   int result = socket->Connect(base::BindOnce(&OnOpenSocket, callback, socket));
   if (result != net::ERR_IO_PENDING)
     callback.Run(result, base::WrapUnique<net::StreamSocket>(NULL));

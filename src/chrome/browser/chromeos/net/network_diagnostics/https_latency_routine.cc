@@ -7,6 +7,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <iostream>
+
 
 #include "base/bind.h"
 #include "base/time/default_tick_clock.h"
@@ -126,7 +128,7 @@ void HttpsLatencyRoutine::HostResolver::Run(const std::string& hostname) {
   parameters->source = net::HostResolverSource::DNS;
   parameters->cache_usage =
       network::mojom::ResolveHostParameters::CacheUsage::DISALLOWED;
-
+  std::cout<<"\nhttps_latency_routine.cc\n";
   host_resolver_->ResolveHost(net::HostPortPair(hostname, kHttpPort),
                               net::NetworkIsolationKey::CreateTransient(),
                               std::move(parameters),

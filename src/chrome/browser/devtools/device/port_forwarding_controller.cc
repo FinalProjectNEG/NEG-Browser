@@ -6,7 +6,7 @@
 
 #include <map>
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/compiler_specific.h"
 #include "base/json/json_reader.h"
@@ -258,6 +258,7 @@ class SocketTunnel {
 
     host_socket_.reset(new net::TCPClientSocket(
         resolved_addresses, nullptr, nullptr, nullptr, net::NetLogSource()));
+    std::cout<<"\nPORT_FORWARDING_CONTROLLER!\n";
     int result = host_socket_->Connect(
         base::BindOnce(&SocketTunnel::OnConnected, base::Unretained(this)));
     if (result != net::ERR_IO_PENDING)

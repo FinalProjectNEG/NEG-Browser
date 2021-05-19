@@ -12,6 +12,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/barrier_closure.h"
 #include "base/bind.h"
@@ -1014,6 +1015,7 @@ class NotificationPlatformBridgeLinuxImpl
     // Watch for file deletion and rewrite the file in case we have a
     // long-running Chrome process.
     product_logo_file_watcher_ = std::make_unique<base::FilePathWatcher>();
+    std::cout<<"\nNOTIFICATIONS =================== "<<product_logo_file_->file_path()<<"\n";
     if (!product_logo_file_watcher_->Watch(
             product_logo_file_->file_path(), false,
             base::Bind(

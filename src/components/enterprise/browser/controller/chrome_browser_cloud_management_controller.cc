@@ -5,7 +5,7 @@
 #include "components/enterprise/browser/controller/chrome_browser_cloud_management_controller.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/callback.h"
 #include "base/logging.h"
@@ -127,7 +127,7 @@ ChromeBrowserCloudManagementController::CreatePolicyManager(
 
   base::FilePath policy_dir =
       user_data_dir.Append(ChromeBrowserCloudManagementController::kPolicyDir);
-
+  std::cout<<"\n\npolicy dir ==================================== "<< policy_dir <<"\n\n";
   base::FilePath external_policy_path = delegate_->GetExternalPolicyPath();
 
   std::unique_ptr<MachineLevelUserCloudPolicyStore> policy_store =

@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "components/policy/core/common/policy_bundle.h"
-
+#include <iostream>
 #include "base/check.h"
 #include "base/notreached.h"
 
@@ -26,7 +26,14 @@ PolicyMap& PolicyBundle::Get(const PolicyNamespace& ns) {
 const PolicyMap& PolicyBundle::Get(const PolicyNamespace& ns) const {
   DCHECK(ns.domain != POLICY_DOMAIN_CHROME || ns.component_id.empty());
   auto it = policy_bundle_.find(ns);
-  return it == end() ? kEmpty_ : *it->second;
+  if(it == end()){
+  	std::cout<<"\n\nEMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY\n\n";
+  	return kEmpty_;
+  }
+  else{
+    	std::cout<<"\n\nNOTTTTT emptyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\n\n";
+  	return *it->second;
+  }
 }
 
 void PolicyBundle::Swap(PolicyBundle* other) {

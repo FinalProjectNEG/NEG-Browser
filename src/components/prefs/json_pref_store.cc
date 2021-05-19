@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/bind_helpers.h"
@@ -169,6 +170,7 @@ bool JsonPrefStore::GetValue(const std::string& key,
 }
 
 std::unique_ptr<base::DictionaryValue> JsonPrefStore::GetValues() const {
+ // std::cout<<"\nJsonPrefStore\n";
   return prefs_->CreateDeepCopy();
 }
 

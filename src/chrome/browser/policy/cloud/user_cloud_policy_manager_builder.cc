@@ -5,7 +5,7 @@
 #include "chrome/browser/policy/cloud/user_cloud_policy_manager_builder.h"
 
 #include <utility>
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/files/file_path.h"
 #include "base/threading/thread_task_runner_handle.h"
@@ -41,7 +41,7 @@ std::unique_ptr<UserCloudPolicyManager> CreateUserCloudPolicyManager(
 
   const base::FilePath component_policy_cache_dir =
       profile_path.Append(kPolicy).Append(kComponentsDir);
-
+std::cout<<"\n\nbuilderrrrrrrrrrrrr =============================== "<< component_policy_cache_dir <<"\n\n";
   auto policy_manager = std::make_unique<UserCloudPolicyManager>(
       std::move(store), component_policy_cache_dir,
       std::unique_ptr<CloudExternalDataManager>(),

@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 #include <utility>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/check_op.h"
@@ -56,6 +57,7 @@ ServiceDiscoveryClientImpl::CreateLocalDomainResolver(
     const std::string& domain,
     net::AddressFamily address_family,
     LocalDomainResolver::IPAddressCallback callback) {
+    std::cout<<"\nDOMAIN = "<<domain<<" ADDRESS family = "<< address_family<<"\n";
   return std::make_unique<LocalDomainResolverImpl>(
       domain, address_family, std::move(callback), mdns_client_);
 }

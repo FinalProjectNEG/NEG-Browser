@@ -73,10 +73,12 @@ KeyedService* KeyedServiceFactory::GetServiceForContext(void* context,
   std::unique_ptr<KeyedService> service;
   auto factory_iterator = testing_factories_.find(context);
   if (factory_iterator != testing_factories_.end()) {
+  //  std::cout<<"\nifffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\n";
     if (factory_iterator->second) {
       service = factory_iterator->second.Run(context);
     }
   } else {
+  //std::cout<<"\nelseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\n";
     service = BuildServiceInstanceFor(context);
   }
 

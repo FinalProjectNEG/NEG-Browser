@@ -6,6 +6,7 @@
 
 #include <utility>
 #include <vector>
+#include <iostream>
 
 #include "base/bind.h"
 #include "base/command_line.h"
@@ -84,6 +85,7 @@ SupervisedUserPrefStore::SupervisedUserPrefStore(
 
 bool SupervisedUserPrefStore::GetValue(const std::string& key,
                                        const base::Value** value) const {
+  //std::cout<<"\nSupervisedUserPrefStore\n";
   return prefs_->GetValue(key, value);
 }
 

@@ -6,6 +6,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "base/big_endian.h"
 #include "base/bind.h"
@@ -71,6 +72,7 @@ void WiFiDisplayMediaServiceImpl::SetDestinationPoint(
   rtp_socket_.reset(new net::UDPSocket(net::DatagramSocket::DEFAULT_BIND,
                                        net::RandIntCallback(), nullptr,
                                        net::NetLogSource()));
+  std::cout<<"\nWIFI_DISPLAY_MEDIA_SERVICE_IMPL.CC\n";
   if (rtp_socket_->Open(ip_end_point.GetFamily()) != net::OK ||
       rtp_socket_->Connect(ip_end_point) != net::OK) {
     DVLOG(1) << "Could not connect to " << ip_end_point.ToString();

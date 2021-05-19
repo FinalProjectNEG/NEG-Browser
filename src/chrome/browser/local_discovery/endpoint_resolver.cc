@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "chrome/browser/local_discovery/endpoint_resolver.h"
-
+#include <iostream>
 #include "base/bind.h"
 #include "base/command_line.h"
 #include "base/debug/dump_without_crashing.h"
@@ -56,6 +56,7 @@ void EndpointResolver::DomainResolveComplete(
     bool success,
     const net::IPAddress& address_ipv4,
     const net::IPAddress& address_ipv6) {
+   std::cout<<"\nEndpointResolver =============================== "<< address_ipv4.ToString()<<"\n";
   if (!success)
     return std::move(callback).Run(net::IPEndPoint());
 

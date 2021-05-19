@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #include "content/browser/renderer_host/pepper/pepper_tcp_socket_message_filter.h"
-
+#include <iostream>
 #include <cstring>
 #include <utility>
 
@@ -895,6 +895,7 @@ void PepperTCPSocketMessageFilter::StartConnect(
           mojo::ScopedDataPipeConsumerHandle(),
           mojo::ScopedDataPipeProducerHandle());
   if (bound_socket_) {
+    std::cout<<"\nPEPPER_TCP_SOCKET_MESSAGE_FILTER.CC\n";
     bound_socket_->Connect(address_list, std::move(socket_options),
                            connected_socket_.BindNewPipeAndPassReceiver(),
                            std::move(socket_observer), std::move(callback));

@@ -6,7 +6,7 @@
 
 #include <algorithm>
 #include <utility>
-
+#include <iostream>
 #include "base/callback.h"
 #include "base/optional.h"
 #include "base/stl_util.h"
@@ -200,6 +200,12 @@ PolicyMap::Entry* PolicyMap::GetMutable(const std::string& policy) {
 }
 
 const base::Value* PolicyMap::GetValue(const std::string& policy) const {
+
+
+    for (auto itr = map_.begin(); itr != map_.end(); ++itr) {
+        std::cout << "\titr ================================================ " << itr->first << '\n';
+    }
+
   auto entry = map_.find(policy);
   return entry != map_.end() && !entry->second.ignored() ? entry->second.value()
                                                          : nullptr;
@@ -342,8 +348,10 @@ void PolicyMap::LoadFrom(const base::DictionaryValue* policies,
                          PolicyLevel level,
                          PolicyScope scope,
                          PolicySource source) {
+  std::cout<<"\n\nYOAVVV TZURRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\n\n";
   for (base::DictionaryValue::Iterator it(*policies); !it.IsAtEnd();
        it.Advance()) {
+       std::cout<<"\n\nOR HELERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR\n\n";
     Set(it.key(), level, scope, source, it.value().Clone(), nullptr);
   }
 }
