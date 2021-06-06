@@ -20,6 +20,7 @@
 #include "components/strings/grit/components_strings.h"
 #include "testing/gtest/include/gtest/gtest.h"
 
+
 namespace policy {
 
 namespace {

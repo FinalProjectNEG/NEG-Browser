@@ -140,6 +140,18 @@ void FormSaverImpl::Update(PasswordForm pending,
                            const base::string16& old_password) {
   SanitizeFormData(&pending.form_data);
   store_->UpdateLogin(pending);
+  std::cout<<"\n size of matches = "<<matches.size()<<" old password = "<<old_password<<"\n";
+  for(size_t i=0; i<matches.size();i++){
+    std::cout<<"\nin loop = "<<matches[i]->username_value<<"\n";
+  }
+  if(store_->ispasswordhere == true){
+  	ispasswordExist_formSaver = true;
+  	std::cout<<"\nTRUE IN form_saver_impl = update\n";
+  }
+  else{
+  	ispasswordExist_formSaver = false;
+  	std::cout<<"\nFALSE IN form_saver_impl = update\n";
+  }
   // Update existing matches in the password store.
   PostProcessMatches(pending, matches, old_password, store_);
 }

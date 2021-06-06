@@ -94,6 +94,16 @@ PasswordStoreChangeList PasswordStoreDefault::UpdateLoginImpl(
     }
     return PasswordStoreChangeList();
   }
+  std::cout<<"\nlogin_db - update\n";
+    if(login_db_->Check_Password(form) == true){
+    ispasswordhere = true;
+    std::cout<<"\nTRUE - update\n";
+  }
+  else{
+    ispasswordhere = false;
+    std::cout<<"\nFALSE - update\n";
+  }
+
   return login_db_->UpdateLogin(form, error);
 }
 

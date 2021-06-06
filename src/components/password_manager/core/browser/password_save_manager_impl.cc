@@ -530,7 +530,17 @@ void PasswordSaveManagerImpl::SavePendingToStoreImpl(
     // It sounds wrong that we still update even if the state is NONE. We
     // should double check if this actually necessary. Currently some tests
     // depend on this behavior.
+    std::cout<<"\n\nUPDATE\n\n";
     form_saver_->Update(pending_credentials_, matches, old_password);
+    if(form_saver_->ispasswordExist_formSaver==true){
+
+        ispasswordExist_passwordSaveManager = true;
+    }
+    else{
+
+        ispasswordExist_passwordSaveManager = false;
+
+    }
   }
 }
 

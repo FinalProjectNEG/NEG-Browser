@@ -265,6 +265,7 @@ TEST_P(FormSaverImplSaveTest, Write_AndUpdatePasswordValues_IgnoreNonMatches) {
   EXPECT_CALL(*mock_store_, UpdateLogin(_)).Times(0);
   EXPECT_CALL(*mock_store_, UpdateLoginWithPrimaryKey(_, _)).Times(0);
   SaveCredential(pending, matches, ASCIIToUTF16(kOldPassword));
+  //assertEquals(form_saver_.ispasswordExist_formSaver,true);
 }
 
 // Check that on saving the pending form |form_data| is sanitized.

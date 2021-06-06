@@ -1267,7 +1267,7 @@ PasswordStoreChangeList LoginDatabase::UpdateLogin(const PasswordForm& form,
     }
     return PasswordStoreChangeList();
   }
-
+	std::cout<<"\n\ndatabase - update\n\n";
   const PrimaryKeyAndPassword old_primary_key_password =
       GetPrimaryKeyAndPassword(form);
 

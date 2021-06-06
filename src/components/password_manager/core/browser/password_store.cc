@@ -192,8 +192,11 @@ void PasswordStore::AddLogin(const PasswordForm& form) {
 }
 
 void PasswordStore::UpdateLogin(const PasswordForm& form) {
+  mtx.lock();
   DCHECK(main_task_runner_->RunsTasksInCurrentSequence());
   ScheduleTask(base::BindOnce(&PasswordStore::UpdateLoginInternal, this, form));
+  mtx.lock();
+  mtx.unlock();
 }
 
 void PasswordStore::UpdateLoginWithPrimaryKey(
@@ -978,6 +981,7 @@ void PasswordStore::UpdateLoginInternal(const PasswordForm& form) {
   TRACE_EVENT0("passwords", "PasswordStore::UpdateLoginInternal");
   BeginTransaction();
   PasswordStoreChangeList changes = UpdateLoginImpl(form);
+  mtx.unlock();
   NotifyLoginsChanged(changes);
   // Sync metadata get updated in NotifyLoginsChanged(). Therefore,
   // CommitTransaction() must be called after NotifyLoginsChanged(), because
